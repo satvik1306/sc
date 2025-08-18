@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => ({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: command === 'build' ? '/saridena/' : '/',
+  base: command === 'build' ? '/sc/' : '/',
   build: {
     outDir: 'build',
   },
