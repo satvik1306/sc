@@ -11,6 +11,8 @@ export const Hero = () => {
   const [videoCompleted, setVideoCompleted] = useState(false);
   const [showMagazineLayout, setShowMagazineLayout] = useState(false);
 
+  const [videoError, setVideoError] = useState(false);
+
   const isInView = useInView(sectionRef, { amount: 0.6 });
 
   useEffect(() => {
@@ -96,16 +98,35 @@ export const Hero = () => {
           delay: showMagazineLayout ? 0.3 : 0
         }}
       >
-        <div className="relative w-full h-full">
-          <video
-            ref={videoRef}
-            src="/videos/bg_video.mp4"
-            autoPlay
-            muted
-            playsInline
-            onEnded={handleVideoEnd}
-            className="w-full h-full object-cover"
-          />
+        <div className="relative w-full h-full bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: `url('${import.meta.env.BASE_URL}photos/exterior/1.jpg')`
+        }}>
+          {!videoError && (
+            <video
+              ref={videoRef}
+              src={`${import.meta.env.BASE_URL}videos/bg_video.mp4`}
+              autoPlay
+              muted
+              playsInline
+              loop
+              preload="metadata"
+              crossOrigin="anonymous"
+              onEnded={handleVideoEnd}
+              onError={(e) => {
+                console.error('Video failed to load:', e);
+                console.log('Video source:', `${import.meta.env.BASE_URL}videos/bg_video.mp4`);
+                console.log('Base URL:', import.meta.env.BASE_URL);
+                setVideoError(true);
+              }}
+              onLoadStart={() => {
+                console.log('Video loading started');
+              }}
+              onCanPlay={() => {
+                console.log('Video can play');
+              }}
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
       </motion.div>
 
