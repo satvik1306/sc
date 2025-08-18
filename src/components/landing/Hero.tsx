@@ -243,16 +243,16 @@ export const Hero = () => {
       {/* Moving Headline */}
       {showMagazineLayout && (
         <motion.div
-          className="absolute bottom-20 xs:bottom-24 sm:bottom-28 md:bottom-32 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-5xl px-4"
+          className="absolute bottom-16 xs:bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 left-1/2 transform -translate-x-1/2 z-30 w-[90%] xs:w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%] max-w-6xl px-2 xs:px-3 sm:px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0, duration: 1.0, ease: "easeInOut" }}
         >
-          <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-primary/30 rounded-xl shadow-2xl p-4 sm:p-6 md:p-8">
+          <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-primary/30 rounded-lg sm:rounded-xl shadow-2xl p-3 xs:p-4 sm:p-5 md:p-6 lg:p-8">
             <MovingHeadlines 
               headlines={["Afford Luxury or Deserve It?"]}
               className="text-white"
-              fontSize="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
+              fontSize="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
             />
           </div>
         </motion.div>

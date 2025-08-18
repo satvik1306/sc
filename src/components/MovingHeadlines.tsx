@@ -31,8 +31,12 @@ export function MovingHeadlines({
   if (headlines.length === 1) {
     return (
       <div className={`${className}`}>
-        <div className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl`}
-             style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+        <div className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl leading-tight`}
+             style={{ 
+               textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+               wordBreak: 'break-word',
+               hyphens: 'auto'
+             }}>
           {headlines[0]}
         </div>
       </div>
@@ -50,8 +54,12 @@ export function MovingHeadlines({
           duration: 1.2, 
           ease: [0.25, 0.46, 0.45, 0.94] 
         }}
-        className={`whitespace-nowrap ${fontSize} font-bold text-center font-heading drop-shadow-2xl`}
-        style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+        className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl leading-tight`}
+        style={{ 
+          textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+          wordBreak: 'break-word',
+          hyphens: 'auto'
+        }}
       >
         {headlines[currentIndex]}
       </motion.div>
