@@ -26,11 +26,11 @@ export const Hero = () => {
 
     const handleTimeUpdate = () => {
       const currentTime = video.currentTime;
-      // Start transition after 2 seconds
-      if (currentTime >= 2 && !videoCompleted) {
+      // Start transition after 2.5 seconds for smoother experience
+      if (currentTime >= 2.5 && !videoCompleted) {
         setVideoCompleted(true);
-        // Start layout transition immediately
-        setShowMagazineLayout(true);
+        // Start layout transition with slight delay for better coordination
+        setTimeout(() => setShowMagazineLayout(true), 100);
       }
     };
 
@@ -53,16 +53,16 @@ export const Hero = () => {
     <section
       id="home"
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full overflow-hidden transition-smooth"
     >
       {/* Background overlay */}
-      <div className={`absolute inset-0 bg-black/50 z-10 transition-all duration-1000 ${
+      <div className={`absolute inset-0 bg-black/50 z-10 transition-all duration-1200 ease-in-out ${
         showMagazineLayout ? 'bg-black/30' : ''
       }`} />
 
       {/* Text background overlay for magazine layout */}
       <motion.div
-        className="absolute left-0 top-0 w-full lg:w-1/2 h-full bg-white/85 backdrop-blur-sm z-15 hover:bg-white transition-all duration-300"
+        className="absolute left-0 top-0 w-full lg:w-1/2 h-full bg-white/85 backdrop-blur-sm z-15 hover:bg-white transition-all duration-300 transition-smooth"
         initial={{ opacity: 0, x: -100 }}
         animate={{ 
           opacity: showMagazineLayout ? 1 : 0,
@@ -77,13 +77,19 @@ export const Hero = () => {
 
       {/* Video container with dynamic sizing */}
       <motion.div
-        className={`absolute z-0 transition-all duration-1200 ease-in-out ${
-          showMagazineLayout 
-            ? 'top-0 left-0 lg:left-1/2 w-full lg:w-1/2 h-full' 
-            : 'inset-0'
-        }`}
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
+        className="absolute z-0"
+        initial={{ 
+          top: 0, 
+          left: 0, 
+          width: "100%", 
+          height: "100%" 
+        }}
+        animate={{
+          top: showMagazineLayout ? "0%" : 0,
+          left: showMagazineLayout ? "50%" : 0,
+          width: showMagazineLayout ? "50%" : "100%",
+          height: showMagazineLayout ? "100%" : "100%"
+        }}
         transition={{ 
           duration: 1.2, 
           ease: "easeInOut",
@@ -113,7 +119,7 @@ export const Hero = () => {
             opacity: showMagazineLayout ? 0 : 1,
             scale: showMagazineLayout ? 0.9 : 1
           }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
         >
           <motion.div
             className="container text-center text-white px-4 max-w-4xl"
@@ -150,7 +156,7 @@ export const Hero = () => {
                 opacity: showMagazineLayout ? 1 : 0,
                 y: showMagazineLayout ? 0 : 30
               }}
-              transition={{ delay: 0.8, duration: 0.8 }}
+              transition={{ delay: 0.8, duration: 1.0, ease: "easeInOut" }}
             >
               WE BUILD
               <br />
@@ -166,7 +172,7 @@ export const Hero = () => {
                 opacity: showMagazineLayout ? 1 : 0,
                 y: showMagazineLayout ? 0 : 30
               }}
-              transition={{ delay: 1.0, duration: 0.8 }}
+              transition={{ delay: 1.0, duration: 1.0, ease: "easeInOut" }}
             >
               <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-content leading-relaxed">
                 Luxury isn't just a finish. It's a feeling that runs through every detail. 
@@ -186,7 +192,7 @@ export const Hero = () => {
                 opacity: showMagazineLayout ? 1 : 0,
                 y: showMagazineLayout ? 0 : 30
               }}
-              transition={{ delay: 1.2, duration: 0.8 }}
+              transition={{ delay: 1.2, duration: 1.0, ease: "easeInOut" }}
             >
               <Button
                 asChild
@@ -219,7 +225,7 @@ export const Hero = () => {
           className="absolute bottom-20 xs:bottom-24 sm:bottom-28 md:bottom-32 left-1/2 transform -translate-x-1/2 z-30 w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-5xl px-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
+          transition={{ delay: 2.0, duration: 1.0, ease: "easeInOut" }}
         >
           <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-primary/30 rounded-xl shadow-2xl p-4 sm:p-6 md:p-8">
             <MovingHeadlines 
@@ -237,7 +243,7 @@ export const Hero = () => {
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.0, duration: 0.8 }}
+          transition={{ delay: 2.2, duration: 1.0, ease: "easeInOut" }}
         >
           <motion.button
             onClick={() => {

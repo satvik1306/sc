@@ -586,4 +586,38 @@
     writing-mode: vertical-lr;
     text-orientation: mixed;
   }
+
+  /* Performance optimizations for smooth transitions */
+  .transition-smooth {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  /* GPU acceleration for video elements */
+  video {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize motion elements */
+  [data-framer-motion] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
