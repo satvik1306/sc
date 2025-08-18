@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://satvik1306.github.io/saridena_constructions",
+  "homepage": "https://satvik1306.github.io/sc",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
