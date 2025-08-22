@@ -1,5 +1,7 @@
 /* Import Bileha Font */
 @import url('./fonts.css');
+/* Import KaTeX CSS for math rendering */
+@import url('katex/dist/katex.min.css');
 
 @tailwind base;
 @tailwind components;

@@ -13,8 +13,13 @@ import { Toaster } from "./components/ui/sonner";
 import { Watermark } from "./components/Watermark";
 import Loader from "./components/Loader";
 import './components/Loader.css';
+// @ts-ignore
+import ChatBot from "./components/ChatBot";
+
 
 function App() {
+
+  
   const [currentPage, setCurrentPage] = useState<'home' | 'lakewood'>(() => {
     // Initialize page state immediately based on URL hash
     const hash = window.location.hash;
@@ -107,6 +112,7 @@ function App() {
   return (
     <LayoutGroup>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
+      <ChatBot />
       {!loading && (
         <motion.div
           initial={{ opacity: 0 }}

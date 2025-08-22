@@ -167,39 +167,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <motion.div
-          className="border-t border-white/10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h4 className="text-xl font-bold mb-2 font-heading text-white">Stay Updated</h4>
-                <p className="text-gray-300">
-                  Subscribe to our newsletter for the latest updates on projects and industry insights.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-all duration-300 backdrop-blur-sm"
-                />
-                <motion.button
-                  className="px-6 py-3 bg-primary hover:bg-primary/90 rounded-lg font-semibold transition-all duration-300 whitespace-nowrap text-white shadow-lg hover:shadow-primary/25"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Subscribe
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Bottom Footer */}
         <div className="border-t border-white/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">

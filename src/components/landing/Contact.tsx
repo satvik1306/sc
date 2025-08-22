@@ -26,6 +26,12 @@ export function Contact() {
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       
+      // Debug logging
+      console.log('EmailJS Configuration Check:');
+      console.log('Service ID:', serviceId ? '✓ Present' : '✗ Missing');
+      console.log('Template ID:', templateId ? '✓ Present' : '✗ Missing');
+      console.log('Public Key:', publicKey ? '✓ Present' : '✗ Missing');
+      
       if (!serviceId || !templateId || !publicKey) {
         throw new Error('EmailJS configuration missing. Please check your environment variables.');
       }
@@ -37,9 +43,14 @@ export function Contact() {
         project_type: formData.subject,
         message: formData.message,
         to_name: 'Saridena Constructions',
+        to_email: 'admin@saridenaconstructions.com', // Add recipient email
+        reply_to: formData.email, // This allows you to reply directly to the sender
       };
 
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('Sending email with params:', templateParams);
+      
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('EmailJS Response:', response);
       setFormState('sent');
       
       // Reset form after 5 seconds
@@ -49,7 +60,14 @@ export function Contact() {
       }, 5000);
       
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('EmailJS Error Details:', error);
+      
+      // More detailed error logging
+      if (error instanceof Error) {
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+      }
+      
       setFormState('error');
       
       // Reset to idle after 5 seconds on error
@@ -77,7 +95,7 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["careers@saridenaconstructions.com"],
+      details: ["admin@saridenaconstructions.com"],
       gradient: "from-green-500 to-emerald-500"
     },
     {
@@ -388,6 +406,12 @@ export function Contact() {
               size="lg"
               variant="secondary"
               className="bg-white text-accent hover:bg-white/90 font-semibold"
+              onClick={() => {
+                const contactElement = document.getElementById('contact');
+                if (contactElement) {
+                  contactElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Schedule Consultation
             </Button>
@@ -395,6 +419,12 @@ export function Contact() {
               size="lg"
               variant="outline"
               className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold"
+              onClick={() => {
+                const projectsElement = document.getElementById('projects');
+                if (projectsElement) {
+                  projectsElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               View Portfolio
             </Button>
