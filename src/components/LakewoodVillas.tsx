@@ -367,87 +367,88 @@ export function LakewoodVillas() {
                 </nav>
               </div>
 
-              {/* Gallery Content - Responsive grid layout */}
-              {selectedCategory === "Location and layout" ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4">
-                  {lakewoodProjectData["Location and layout"]?.map((project, index) => {
-                    return (
-                      <motion.div
-                        key={index}
-                        layout
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className={`rounded-lg shadow-lg overflow-hidden group aspect-square ${
-                          index === 0 ? 'col-span-2 row-span-2' : ''
-                        }`}
-                      >
-                        {project.type === "map" ? (
-                          <div className="relative w-full h-full">
-                            <iframe
-                              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1904.0092653797528!2d78.32458454996164!3d17.36284131174712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb95007f4f624f%3A0x6ce54ab1b762e7c5!2sLakeWoods%20Villas!5e0!3m2!1sen!2sin!4v1754996807271!5m2!1sen!2sin"
-                              width="100%"
-                              height="100%"
-                              style={{ border: 0 }}
-                              allowFullScreen
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                              className="pointer-events-none"
-                            ></iframe>
-                            <a
-                              href="https://www.google.com/maps/place/LakeWoods+Villas/@17.36284131174712,78.32458454996164,17z"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="absolute inset-0 flex items-center justify-center bg-black/60 text-white text-xs sm:text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 touch-manipulation"
-                            >
-                              View in Larger Map
-                            </a>
-                          </div>
-                        ) : (
-                          <ImageLoader
-                            src={project.image}
-                            alt={project.name}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
-                            loading={index < 6 ? "eager" : "lazy"}
-                            style={{ imageRendering: 'auto' }}
-                            onClick={() => openLightbox(project.image, project.name, index)}
-                          />
-                        )}
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-4">
-                  {lakewoodProjectData[selectedCategory]?.map((project, index) => {
-                    return (
-                      <motion.div
-                        key={index}
-                        layout
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className={`rounded-lg shadow-lg overflow-hidden group aspect-square ${
-                          index % 7 === 0 ? 'col-span-2' : ''
-                        } ${
-                          index % 11 === 0 ? 'row-span-2' : ''
-                        }`}
-                      >
+              {/* Magazine-style Masonry Gallery */}
+              <div className="magazine-masonry mb-8">
+                {lakewoodProjectData[selectedCategory]?.map((project, index) => {
+                  // Vary image heights for magazine effect
+                  const heights = [
+                    'h-64', 'h-80', 'h-72', 'h-96', 'h-56', 'h-60', 'h-52', 'h-44', 'h-48', 'h-80', 'h-72', 'h-64'
+                  ];
+                  const heightClass = heights[index % heights.length];
+                  return (
+                    <motion.div
+                      key={index}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5, delay: index * 0.07 }}
+                      className={`mb-4 break-inside-avoid rounded-xl shadow-lg overflow-hidden group bg-slate-800/80 hover:bg-slate-700/90 transition-all duration-300 ${heightClass}`}
+                    >
+                      {project.type === "map" ? (
+                        <div className="relative w-full h-full min-h-[200px]">
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1904.0092653797528!2d78.32458454996164!3d17.36284131174712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb95007f4f624f%3A0x6ce54ab1b762e7c5!2sLakeWoods%20Villas!5e0!3m2!1sen!2sin!4v1754996807271!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0, minHeight: 200 }}
+                            allowFullScreen
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            className="pointer-events-none rounded-xl"
+                          ></iframe>
+                          <a
+                            href="https://www.google.com/maps/place/LakeWoods+Villas/@17.36284131174712,78.32458454996164,17z"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="absolute inset-0 flex items-center justify-center bg-black/60 text-white text-xs sm:text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 touch-manipulation rounded-xl"
+                          >
+                            View in Larger Map
+                          </a>
+                        </div>
+                      ) : (
                         <ImageLoader
                           src={project.image}
                           alt={project.name}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer rounded-xl"
                           loading={index < 8 ? "eager" : "lazy"}
-                          style={{ imageRendering: 'auto' }}
+                          style={{ imageRendering: 'auto', minHeight: 180, maxHeight: 420, objectFit: 'cover' }}
                           onClick={() => openLightbox(project.image, project.name, index)}
                         />
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              )}
+                      )}
+                      <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded font-content opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        {project.name}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              {/* Magazine Masonry CSS */}
+              <style>{`
+                .magazine-masonry {
+                  column-count: 1;
+                  column-gap: 1rem;
+                }
+                @media (min-width: 640px) {
+                  .magazine-masonry { column-count: 2; }
+                }
+                @media (min-width: 1024px) {
+                  .magazine-masonry { column-count: 3; }
+                }
+                @media (min-width: 1536px) {
+                  .magazine-masonry { column-count: 4; }
+                }
+                .magazine-masonry > * {
+                  display: block;
+                  width: 100%;
+                  margin-bottom: 1rem;
+                }
+                .break-inside-avoid {
+                  break-inside: avoid;
+                  -webkit-column-break-inside: avoid;
+                  page-break-inside: avoid;
+                }
+              `}</style>
             </motion.div>
 
             {/* Specifications */}

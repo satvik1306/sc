@@ -7,10 +7,10 @@ const allProjects: Record<string, any> = {
   "LakeWoods Villas": {
     description: "Luxury waterfront villas featuring contemporary design and premium amenities",
     features: ["Waterfront Location", "Modern Architecture", "Premium Finishes", "Smart Home Integration"],
-    status: "Available",
+    status: "Under Construction",
     type: "Residential"
   },
-  "Azure Heights": {
+  /*"Azure Heights": {
     description: "High-end residential towers with panoramic city views and world-class amenities",
     features: ["Sky Gardens", "Infinity Pool", "Concierge Service", "Smart Living Technology"],
     status: "Pre-Launch",
@@ -33,7 +33,7 @@ const allProjects: Record<string, any> = {
     features: ["Luxury Finishes", "Private Elevators", "Rooftop Lounge", "Valet Service"],
     status: "Available",
     type: "Residential"
-  },
+  }*/
 };
 
 export function Projects() {

@@ -49,11 +49,24 @@ export default function ChatBot() {
     scrollToBottom();
   }, [messages]);
 
+
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Auto-focus input after every assistant message
+  useEffect(() => {
+    if (
+      isOpen &&
+      inputRef.current &&
+      messages.length > 0 &&
+      messages[messages.length - 1].role === "assistant"
+    ) {
+      inputRef.current.focus();
+    }
+  }, [messages, isOpen]);
 
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
@@ -143,15 +156,35 @@ export default function ChatBot() {
   };
 
   return (
-    <div 
-      style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        zIndex: 99999,
-        pointerEvents: 'auto'
-      }}
-    >
+    <>
+      {/* Responsive styles for mobile */}
+      <style>{`
+        @media (max-width: 600px) {
+          .chatbot-modal {
+            width: 98vw !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            height: 80vh !important;
+            min-height: 200px !important;
+            max-height: 90vh !important;
+            border-radius: 10px !important;
+            right: 0 !important;
+            left: 0 !important;
+            margin: 0 auto !important;
+          }
+        }
+      `}</style>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '4vw',
+          right: '4vw',
+          zIndex: 99999,
+          pointerEvents: 'auto',
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+        }}
+      >
       {/* Chat Toggle Button */}
       <AnimatePresence>
         {!isOpen && (
@@ -166,8 +199,8 @@ export default function ChatBot() {
               setIsOpen(true);
             }}
             style={{
-              width: '64px',
-              height: '64px',
+              width: '56px',
+              height: '56px',
               background: 'rgba(37, 40, 46, 0.8)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
@@ -182,7 +215,7 @@ export default function ChatBot() {
               transition: 'all 0.3s ease',
               position: 'relative',
               overflow: 'hidden',
-              pointerEvents: 'auto'
+              pointerEvents: 'auto',
             }}
           >
             <div 
@@ -219,43 +252,46 @@ export default function ChatBot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            className="chatbot-modal"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.1 }}
             style={{
               position: 'absolute',
-              bottom: '80px',
-              right: '0',
-              width: '380px',
-              height: '550px',
+              bottom: '72px',
+              right: 0,
+              width: '92vw',
+              maxWidth: '380px',
+              height: '70vh',
+              maxHeight: '550px',
+              minWidth: '260px',
+              minHeight: '320px',
               background: 'rgba(37, 40, 46, 0.85)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '20px',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+              borderRadius: '16px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
-              pointerEvents: 'auto'
+              pointerEvents: 'auto',
             }}
           >
             {/* Header */}
-            <div 
-              style={{
-                background: 'rgba(37, 40, 46, 0.9)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                color: 'white',
-                padding: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}
-            >
+            <div style={{
+              background: 'rgba(37, 40, 46, 0.9)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              padding: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ position: 'relative' }}>
                   <div style={{
@@ -612,5 +648,6 @@ export default function ChatBot() {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 }
