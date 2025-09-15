@@ -173,7 +173,6 @@ export function LakewoodVillas() {
     "Private Guest Rooms",
     "Amphitheatre",
     "Wellness Spaces",
-    "Jogging Trails",
     "Pickleball Courts",
     "Green Zones",
     "24x7 Premium Security",
@@ -479,7 +478,7 @@ export function LakewoodVillas() {
               <div className="prose prose-lg max-w-4xl mx-auto text-center">
                 <p className="text-xl text-gray-300 mb-6 leading-relaxed font-content">
                   The community is integrated with a 25,000 sq. ft. clubhouse, private guest rooms, amphitheatre, 
-                  wellness spaces, jogging trails, pickleball courts, and green zones that breathe with the architecture.
+                  wellness spaces, pickleball courts, and green zones that breathe with the architecture.
                 </p>
                 <p className="text-xl text-muted-foreground mb-6 leading-relaxed font-content">
                   <strong>No villa faces another.</strong> Every detail, from the air you breathe to the way the sun 
