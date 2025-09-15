@@ -124,7 +124,7 @@ export function Contact() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-heading">
-            Let's Build Your <span className="text-accent">Dream Project</span>
+            Let ' s Build Your <span className="text-accent">Dream Project</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Ready to start your architectural journey? Our team of experts is here to guide you 
