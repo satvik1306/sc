@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Home, MapPin, Bed, Square, Calendar, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ImageLoader } from "@/components/ImageLoader";
+import OptimizedImage from "@/components/OptimizedImage";
 import { MovingHeadlines } from "@/components/MovingHeadlines";
 
 type Category = "Interior" | "Exterior" | "Floor Plan" | "Location and layout" | "Isometric View";
@@ -16,8 +16,11 @@ interface ProjectItem {
 
 const categoryOrder: Category[] = ["Location and layout", "Exterior", "Floor Plan", "Interior", "Isometric View"];
 
-// Helper function to generate image paths
-const getImagePath = (folder: string, filename: string) => `${import.meta.env.BASE_URL}photos/${folder}/${filename}`;
+// Helper function to generate image paths - for both original and optimized formats
+const getImagePath = (folder: string, filename: string) => {
+  const basePath = `${import.meta.env.BASE_URL}photos/${folder}/${filename}`;
+  return basePath;
+};  
 
 // Exact same data structure as in Projects.tsx for LakeWoods Villas
 const lakewoodProjectData: Record<Category, ProjectItem[]> = {
@@ -153,7 +156,7 @@ export function LakewoodVillas() {
     type: "Ultra-Luxury Triplex Villas",
     status: "Exclusive Development",
     completionDate: "Premium Community",
-    totalUnits: "29 Ultra-Luxury Villas",
+    totalUnits: "30 Ultra-Luxury Villas",
     priceRange: "Ultra-Premium",
     specifications: {
       plotArea: "945 to 1,360 sq.yd",
@@ -204,7 +207,7 @@ export function LakewoodVillas() {
             
             {/* Centered Lakewoods Logo */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
-              <ImageLoader
+              <OptimizedImage
                 src={getImagePath("", "lakewoods_logo.jpg")}
                 alt="Lakewoods Logo"
                 className="h-10 sm:h-12 w-auto object-contain"
@@ -222,7 +225,7 @@ export function LakewoodVillas() {
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0">
-          <ImageLoader
+          <img
             src={getImagePath("exterior", "1.jpg")}
             alt="Lakewood Villas"
             className="w-full h-full object-cover"
@@ -264,9 +267,9 @@ export function LakewoodVillas() {
           <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/40 rounded-xl p-8 md:p-12">
             <MovingHeadlines 
               headlines={[
-                "This Isn't for Everyone. That Was Always the Point.",
-                "Excellence resides here. Shouldn't you?",
-                "Not just a home. It's a statement. Ready to make yours?",
+                "This Isn ' t for Everyone. That Was Always the Point.",
+                "Excellence resides here. Shouldn ' t you?",
+                "Not just a home. It ' s a statement. Ready to make yours?",
                 "Designed for the distinguished. Lived in by the worthy."
               ]}
               className="text-white"
@@ -293,9 +296,9 @@ export function LakewoodVillas() {
                   <span className="text-primary">US?</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-6 leading-relaxed font-content">
-                  LakeWoods Villas is not just a development, it's a rare composition of earth, light, and intent. 
-                  With just 29 ultra-luxury triplex villas, this estate is not for the crowd. It isn't promoted. 
-                  It isn't pushed. It doesn't call attention; it commands awareness.
+                  LakeWoods Villas is not just a development, it ' s a rare composition of earth, light, and intent. 
+                  With just 29 ultra-luxury triplex villas, this estate is not for the crowd. It isn ' t promoted. 
+                  It isn ' t pushed. It doesn ' t call attention; it commands awareness.
                 </p>
                 <p className="text-xl text-muted-foreground mb-6 leading-relaxed font-content">
                   Each villa is built on plots ranging from 945 to 1,360 sq. yd. with a super built-up area between 
@@ -304,8 +307,8 @@ export function LakewoodVillas() {
                 </p>
                 <p className="text-xl text-muted-foreground leading-relaxed font-content">
                   100% Vaastu compliant, the homes are designed with vast open terraces, high ceilings, no shared walls, 
-                  and spatial intelligence that creates privacy without walls. The question isn't "why here?" 
-                  It's "are you meant to be here?"
+                  and spatial intelligence that creates privacy without walls. The question isn ' t "why here?" 
+                  It ' s "are you meant to be here?"
                 </p>
               </div>
               
@@ -368,13 +371,8 @@ export function LakewoodVillas() {
               </div>
 
               {/* Magazine-style Masonry Gallery */}
-              <div className="magazine-masonry mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8">
                 {lakewoodProjectData[selectedCategory]?.map((project, index) => {
-                  // Vary image heights for magazine effect
-                  const heights = [
-                    'h-64', 'h-80', 'h-72', 'h-96', 'h-56', 'h-60', 'h-52', 'h-44', 'h-48', 'h-80', 'h-72', 'h-64'
-                  ];
-                  const heightClass = heights[index % heights.length];
                   return (
                     <motion.div
                       key={index}
@@ -383,7 +381,7 @@ export function LakewoodVillas() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       transition={{ duration: 0.5, delay: index * 0.07 }}
-                      className={`mb-4 break-inside-avoid rounded-xl shadow-lg overflow-hidden group bg-slate-800/80 hover:bg-slate-700/90 transition-all duration-300 ${heightClass}`}
+                      className="rounded-xl shadow-lg overflow-hidden group bg-slate-800/80 hover:bg-slate-700/90 transition-all duration-300"
                     >
                       {project.type === "map" ? (
                         <div className="relative w-full h-full min-h-[200px]">
@@ -407,7 +405,7 @@ export function LakewoodVillas() {
                           </a>
                         </div>
                       ) : (
-                        <ImageLoader
+                        <OptimizedImage
                           src={project.image}
                           alt={project.name}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer rounded-xl"
@@ -424,31 +422,7 @@ export function LakewoodVillas() {
                 })}
               </div>
               {/* Magazine Masonry CSS */}
-              <style>{`
-                .magazine-masonry {
-                  column-count: 1;
-                  column-gap: 1rem;
-                }
-                @media (min-width: 640px) {
-                  .magazine-masonry { column-count: 2; }
-                }
-                @media (min-width: 1024px) {
-                  .magazine-masonry { column-count: 3; }
-                }
-                @media (min-width: 1536px) {
-                  .magazine-masonry { column-count: 4; }
-                }
-                .magazine-masonry > * {
-                  display: block;
-                  width: 100%;
-                  margin-bottom: 1rem;
-                }
-                .break-inside-avoid {
-                  break-inside: avoid;
-                  -webkit-column-break-inside: avoid;
-                  page-break-inside: avoid;
-                }
-              `}</style>
+
             </motion.div>
 
             {/* Specifications */}
@@ -471,6 +445,27 @@ export function LakewoodVillas() {
               </div>
             </motion.div>
 
+            {/* Moving Headlines - Specifications */}
+            <motion.section 
+              className="py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+            >
+              <div className="bg-slate-800/80 backdrop-blur-sm border border-primary/30 rounded-xl p-8 md:p-12">
+                <MovingHeadlines 
+                  headlines={[
+                    "Precision in every detail. Perfection in every dimension.",
+                    "Where luxury meets functionality. Where elegance meets purpose.",
+                    "Space that speaks volumes. Design that tells stories.",
+                    "Built for those who appreciate the extraordinary."
+                  ]}
+                  className="text-white"
+                  fontSize="text-xl sm:text-2xl md:text-3xl"
+                />
+              </div>
+            </motion.section>
+
             {/* Community Features */}
             <motion.div
               className="bg-slate-700/90 backdrop-blur-sm border border-slate-500/40 p-8 md:p-12 rounded-lg shadow-lg mb-16 hover:bg-slate-600/90 hover:border-primary/50 hover:shadow-2xl transition-all duration-300 text-white"
@@ -492,10 +487,31 @@ export function LakewoodVillas() {
                   in the usual real estate ecosystem.
                 </p>
                 <p className="text-xl text-primary font-semibold font-content">
-                  It's not designed to attract, it's designed to awaken. Do you belong here?
+                  It ' s not designed to attract, it ' s designed to awaken. Do you belong here?
                 </p>
               </div>
             </motion.div>
+
+            {/* Moving Headlines - Community */}
+            <motion.section 
+              className="py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+            >
+              <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-primary/30 rounded-xl p-8 md:p-12">
+                <MovingHeadlines 
+                  headlines={[
+                    "A community of distinction. A lifestyle of excellence.",
+                    "Where nature and luxury exist in perfect harmony.",
+                    "Privacy isn ' t just promised. It ' s architected.",
+                    "Live where others dream to visit."
+                  ]}
+                  className="text-white"
+                  fontSize="text-xl sm:text-2xl md:text-3xl"
+                />
+              </div>
+            </motion.section>
 
             {/* Amenities */}
             <motion.div
@@ -521,6 +537,27 @@ export function LakewoodVillas() {
                 ))}
               </div>
             </motion.div>
+
+            {/* Moving Headlines - Amenities */}
+            <motion.section 
+              className="py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+            >
+              <div className="bg-slate-700/90 backdrop-blur-sm border border-primary/30 rounded-xl p-8 md:p-12">
+                <MovingHeadlines 
+                  headlines={[
+                    "World-class amenities. World-class living.",
+                    "Every comfort considered. Every luxury included.",
+                    "Where wellness meets indulgence.",
+                    "Your private sanctuary awaits."
+                  ]}
+                  className="text-white"
+                  fontSize="text-xl sm:text-2xl md:text-3xl"
+                />
+              </div>
+            </motion.section>
           </div>
         </div>
       </section>
@@ -537,9 +574,9 @@ export function LakewoodVillas() {
             <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-700/95 border-2 border-primary/40 rounded-3xl p-10 md:p-16 text-center shadow-2xl backdrop-blur-lg">
               <MovingHeadlines 
                 headlines={[
-                  "This Isn't for Everyone. That Was Always the Point.",
-                  "Excellence resides here. Shouldn't you?",
-                  "Not just a home. It's a statement. Ready to make yours?",
+                  "This Isn ' t for Everyone. That Was Always the Point.",
+                  "Excellence resides here. Shouldn ' t you?",
+                  "Not just a home. It ' s a statement. Ready to make yours?",
                   "Designed for the distinguished. Lived in by the worthy."
                 ]}
                 className="text-white"
@@ -560,7 +597,7 @@ export function LakewoodVillas() {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl md:text-4xl font-bold mb-6 font-heading text-white">
-              Are You Meant to Be Here?
+              Are You Meant to Be Here ?
             </h3>
             <p className="text-lg text-gray-300 mb-4 font-content">
               Featured Project: LakeWoods Villas

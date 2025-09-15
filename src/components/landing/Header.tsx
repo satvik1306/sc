@@ -66,12 +66,12 @@ export function Header() {
             <img 
               src={`${import.meta.env.BASE_URL}photos/saridena_logo.png`}
               alt="Saridena Constructions Logo"
-              className="h-8 lg:h-10 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
+              className="h-6 xxs:h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
             />
           </motion.div>
 
           {/* Navigation Links */}
-          <div className="flex items-center space-x-8">
+          <div           className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10">
             {navLinks.map((link, i) => (
               <motion.a
                 key={link.href}
@@ -97,7 +97,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <motion.div
-          className="md:hidden mt-2 sm:mt-4"
+          className="md:hidden mt-1 xxs:mt-2 sm:mt-3 md:mt-4"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}

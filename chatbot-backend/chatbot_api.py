@@ -66,20 +66,80 @@ def chat():
         ])
         is_unclear = lower_msg in ["what?", "unclear", "confused", "i need more details"]
 
-        # System prompt selection
+        # Project-related question detection
+        project_keywords = [
+            "project", "projects", "villa", "villas", "development", "developments", "property", "properties", "real estate", "ongoing", "current", "future", "upcoming", "completed", "portfolio"
+        ]
+        is_project_query = any(kw in lower_msg for kw in project_keywords)
+
+        # Analyze conversation topics
+        def get_conversation_topics(history):
+            topics = defaultdict(int)
+            for msg in history:
+                content = msg['content'].lower()
+                if 'amenity' in content or 'facility' in content:
+                    topics['amenities'] += 1
+                if 'price' in content or 'cost' in content:
+                    topics['pricing'] += 1
+                if 'location' in content or 'where' in content:
+                    topics['location'] += 1
+                if 'villa' in content or 'property' in content:
+                    topics['property'] += 1
+            return topics
+
+        topics = get_conversation_topics(conversation_history[session_id])
+        most_discussed = max(topics.items(), key=lambda x: x[1])[0] if topics else None
+
+        # System prompt selection with enhanced context
         if is_greeting:
-            system_prompt = f"Respond ONLY with a friendly short greeting like 'Hello! How can I help you?' and nothing else."
+            system_prompt = f"Respond with a friendly greeting and mention a key highlight about LakeWoods Villas that would interest a new visitor."
         elif is_acknowledgment:
-            system_prompt = "Respond with a short acknowledgment like 'You're welcome!' or 'Happy to help!', and nothing else."
+            next_topic = None
+            if most_discussed == 'amenities':
+                next_topic = 'You might also be interested in our villa specifications.'
+            elif most_discussed == 'pricing':
+                next_topic = 'Would you like to know about our available plot sizes?'
+            elif most_discussed == 'location':
+                next_topic = 'I can tell you about the nearby facilities and connectivity.'
+            elif most_discussed == 'property':
+                next_topic = 'Would you like to learn about our amenities?'
+            
+            system_prompt = f"Respond with a polite acknowledgment and suggest: '{next_topic}'" if next_topic else "Respond with a short acknowledgment and ask if there's anything else you can help with."
         elif is_identity_question:
-            system_prompt = "You are the official assistant of Saridena Constructions and LakeWoods Villas. Answer that you are a virtual assistant representing them. Do not include any name like Aria or others."
+            system_prompt = (
+                "You are the official assistant of Saridena Constructions and LakeWoods Villas. "
+                "Answer that you are a virtual assistant representing them, emphasizing your knowledge "
+                "about the project and ability to help with detailed information. Do not include any name."
+            )
         elif is_trust_question:
             system_prompt = (
                 "You are the official assistant for Saridena Constructions and LakeWoods Villas. "
-                "If asked about trust, respond with a confident, concise answer emphasizing the company's experience, transparency, customer satisfaction, and quality."
+                "Respond with a confident, concise answer emphasizing the company's experience, "
+                "transparency, customer satisfaction, and quality. Include specific features that "
+                "demonstrate our commitment to excellence."
             )
         elif is_unclear:
-            system_prompt = "Respond only with: 'Sorry, I couldn't understand. Please provide more details.'"
+            system_prompt = (
+                f"Based on our conversation about {most_discussed if most_discussed else 'LakeWoods Villas'}, "
+                "I notice you need clarification. Ask specific questions to better understand what "
+                "information would be most helpful."
+            )
+        elif is_project_query:
+            # Identify user interests based on conversation
+            interests = [topic for topic, count in topics.items() if count > 0]
+            interest_context = ""
+            if interests:
+                interest_context = f"Based on your interest in {', '.join(interests)}, "
+            
+            system_prompt = (
+                "You are the official assistant for Saridena Constructions and LakeWoods Villas. "
+                f"{interest_context}let me tell you about LakeWoods Villas. "
+                "Only mention LakeWoods Villas as the current project. Do NOT invent or mention any other projects. "
+                "If asked about other projects, emphasize that LakeWoods Villas is our exclusive luxury development. "
+                "Focus on aspects that align with the user's demonstrated interests. "
+                "Never make up project names or details. Only use the information below.\n\n"
+                f"Knowledge Base:\n{context}\n{conversation_context}\n\nUser message: \"{user_message}\"\n\nAnswer accordingly."
+            )
         else:
             detail_flag = "detailed" if is_detailed_request else "concise"
             system_prompt = f"""

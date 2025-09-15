@@ -22,7 +22,7 @@ export function MovingHeadlines({
     
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % headlines.length);
-    }, 4000); // Change headline every 4 seconds
+    }, 6000); // Change headline every 6 seconds
 
     return () => clearInterval(interval);
   }, [headlines.length]);
@@ -51,7 +51,7 @@ export function MovingHeadlines({
         animate={{ x: "0%", opacity: 1 }}
         exit={{ x: "-100%", opacity: 0 }}
         transition={{ 
-          duration: 1.2, 
+          duration: 2, 
           ease: [0.25, 0.46, 0.45, 0.94] 
         }}
         className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl leading-tight`}

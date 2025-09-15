@@ -144,12 +144,62 @@ export default function ChatBot() {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-  const quickQuestions = [
-    "What villa sizes do you offer?",
-    "What are the prices?",
-    "Tell me about amenities",
-    "How can I contact you?"
-  ];
+  const getContextualQuestions = (messages) => {
+    const lastMessage = messages[messages.length - 1];
+    const isFirstMessage = messages.length === 1;
+    const defaultQuestions = [
+      "What villa sizes do you offer?",
+      "What are the prices?",
+      "Tell me about amenities",
+      "How can I contact you?"
+    ];
+
+    // If it's the first message, return default questions
+    if (isFirstMessage) return defaultQuestions;
+
+    // If the last message mentioned amenities
+    if (lastMessage.content.toLowerCase().includes('amenity') || 
+        lastMessage.content.toLowerCase().includes('facilities')) {
+      return [
+        "Tell me more about the clubhouse",
+        "What security features are there?",
+        "Are there any green spaces?",
+        "What about wellness facilities?"
+      ];
+    }
+
+    // If the last message mentioned villas or properties
+    if (lastMessage.content.toLowerCase().includes('villa') || 
+        lastMessage.content.toLowerCase().includes('property')) {
+      return [
+        "What are the plot sizes?",
+        "How many bedrooms?",
+        "Are they Vaastu compliant?",
+        "What's the built-up area?"
+      ];
+    }
+
+    // If the last message mentioned location
+    if (lastMessage.content.toLowerCase().includes('location') || 
+        lastMessage.content.toLowerCase().includes('where')) {
+      return [
+        "How far from the city?",
+        "What's nearby?",
+        "Show me on map",
+        "What about connectivity?"
+      ];
+    }
+
+    // Default follow-up questions
+    return [
+      "Tell me more details",
+      "What makes this unique?",
+      "Can I schedule a visit?",
+      "What are the next steps?"
+    ];
+  };
+
+  const quickQuestions = getContextualQuestions(messages);
 
   const handleQuickQuestion = (question) => {
     setInput(question);

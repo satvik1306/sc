@@ -98,7 +98,7 @@ export const Hero = () => {
           delay: showMagazineLayout ? 0.3 : 0
         }}
       >
-        <div className="relative w-full h-full bg-cover bg-center bg-no-repeat" style={{
+        <div className="relative w-full h-full bg-cover bg-center bg-no-repeat overflow-hidden" style={{
           backgroundImage: `url('${import.meta.env.BASE_URL}photos/exterior/1.jpg')`
         }}>
           {!videoError && (
@@ -124,7 +124,7 @@ export const Hero = () => {
               onCanPlay={() => {
                 console.log('Video can play');
               }}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center min-h-full min-w-full"
             />
           )}
         </div>
@@ -149,7 +149,7 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             viewport={{ amount: 0.5 }}
           >
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold tracking-tight font-content leading-tight">
+            <h1 className="text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight font-content leading-tight">
               Where Luxury Meets Mindful Living
             </h1>
           </motion.div>
@@ -157,7 +157,7 @@ export const Hero = () => {
 
         {/* Magazine-style layout */}
         <motion.div
-          className="absolute inset-0 flex items-center"
+          className="absolute inset-0 flex items-center px-2 xxs:px-3 sm:px-4 md:px-6 lg:px-8"
           initial={{ opacity: 0, x: -100 }}
           animate={{ 
             opacity: showMagazineLayout ? 1 : 0,
@@ -169,9 +169,9 @@ export const Hero = () => {
             delay: showMagazineLayout ? 0.5 : 0
           }}
         >
-          <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-black pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24">
+          <div className="w-full lg:w-1/2 px-3 xxs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-black pt-6 xxs:pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24">
             <motion.h1 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-tight mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-black font-heading"
+              className="text-base xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal leading-tight mb-2 xs:mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-black font-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -195,7 +195,7 @@ export const Hero = () => {
               }}
               transition={{ delay: 1.0, duration: 1.0, ease: "easeInOut" }}
             >
-              <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-content leading-relaxed">
+              <p className="text-black text-xs xxs:text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-content leading-relaxed">
                 Luxury isn't just a finish. It's a feeling that runs through every detail. 
                 We build for moments, for silence, for stillness, for space.
               </p>
@@ -218,7 +218,7 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full min-h-[48px] px-4 sm:px-6 md:px-8 text-sm sm:text-base md:text-lg touch-manipulation"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full min-h-[40px] xxs:min-h-[44px] sm:min-h-[48px] px-3 xxs:px-4 sm:px-6 md:px-8 text-xs xxs:text-sm sm:text-base md:text-lg touch-manipulation"
               >
                 <a href="#projects">
                   Explore Portfolio <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />

@@ -89,7 +89,7 @@ export function Footer() {
                 <div>
                   <h3 className="text-2xl font-bold font-heading text-white">Saridena</h3>
                   <p className="text-gray-300 text-sm">Constructions Pvt. Ltd.</p>
-                </div>
+                </div>  
               </div>
               
               <p className="text-gray-300 leading-relaxed max-w-md">
