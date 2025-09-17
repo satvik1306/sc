@@ -243,7 +243,7 @@ export function Projects() {
                 </div>
 
                 {/* Features and Video Side-by-Side */}
-                <div className="grid lg:grid-cols-[1fr_400px] gap-4 lg:gap-6 items-start">
+                <div className={`grid ${showVideoPreview ? 'lg:grid-cols-1' : 'lg:grid-cols-[1fr_400px]'} gap-4 lg:gap-6 items-start`}>
                   {/* Features */}
                   <div>
                     <h4 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 font-heading">Key Features</h4>
@@ -265,7 +265,7 @@ export function Projects() {
 
                   {/* Project Visual - Fills available height */}
                   <div 
-                    className="relative lg:min-h-[250px] flex flex-col cursor-pointer"
+                    className={`relative ${showVideoPreview ? 'lg:min-h-[500px]' : 'lg:min-h-[250px]'} flex flex-col cursor-pointer transition-all duration-500`}
                     onClick={() => {
                       if (showVideoPreview) {
                         console.log('🎬 Container clicked while video playing! Stopping video...');
@@ -298,14 +298,18 @@ export function Projects() {
                           onError={(e) => {
                             console.error('Video failed to load:', e.currentTarget.src);
                           }}
-                          onLoadedData={() => {
+                          onLoadedData={(e) => {
                             console.log('Video data loaded');
+                            e.currentTarget.playbackRate = 2.0;
                           }}
                           onCanPlay={() => {
                             console.log('Video can play');
+                            if (videoRef.current) {
+                              videoRef.current.playbackRate = 2.0;
+                            }
                           }}
                         >
-                          <source src={`${import.meta.env.BASE_URL}videos/sari1.mp4`} type="video/mp4" />
+                          <source src={`${import.meta.env.BASE_URL}videos/lakewoods_walkthrough.mp4`} type="video/mp4" />
                         </video>
                       ) : (
                         <div className="relative w-full h-full">
