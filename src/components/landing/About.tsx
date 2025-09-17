@@ -40,11 +40,6 @@ export function About() {
       icon: Shield,
       title: "Integrity",
       description: "Honest communication and transparent business practices"
-    },
-    {
-      icon: Target,
-      title: "Excellence",
-      description: "Striving for perfection in every aspect of construction"
     }
   ];
 
@@ -166,7 +161,7 @@ export function About() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-20 max-w-5xl mx-auto">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
