@@ -3,11 +3,27 @@ import { Award, Users, Target, Heart, Lightbulb, Shield } from "lucide-react";
 
 export function About() {
   const achievements = [
-    { icon: Award, title: "Excellence in Design", description: "Award-winning architectural solutions" },
-    { icon: Users, title: "500+ Happy Clients", description: "Building lasting relationships" },
-    { icon: Target, title: "100% Project Success", description: "On-time, on-budget delivery" },
-    { icon: Shield, title: "Quality Assurance", description: "Uncompromising standards" }
-  ];
+    { 
+      icon: Lightbulb, 
+      title: "Innovative Approach", 
+      description: "Revolutionizing real estate with VR tours and nature-integrated design" 
+    },
+    { 
+      icon: Shield, 
+      title: "Strong Foundation", 
+      description: "Backed by 16+ years of US tech leadership" 
+    },
+    { 
+      icon: Target, 
+      title: "First Project", 
+      description: "LakeWoods Villas - Where luxury meets natural serenity" 
+    },
+    { 
+      icon: Users, 
+      title: "Green Living", 
+      description: "Creating homes that harmonize with their natural surroundings" 
+    }
+];
 
   const values = [
     {
@@ -47,8 +63,8 @@ export function About() {
             About <span className="text-accent">Saridena</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            With over 15 years of experience in luxury construction, we've established ourselves 
-            as leaders in architectural innovation and design excellence.
+            With over 15 years of experience, we've established ourselves as pioneers 
+            in creating sustainable luxury spaces that embrace and preserve their natural surroundings.
           </p>
         </motion.div>
 
@@ -74,7 +90,7 @@ export function About() {
                   </div>
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-bold font-heading mb-1 text-white">Mr. Suman Rao Saridena</h3>
-                    <p className="text-accent font-medium text-lg">Founder & Chief Architect</p>
+                    <p className="text-accent font-medium text-lg">Managing Director</p>
                   </div>
                 </div>
                 
@@ -242,8 +258,8 @@ export function About() {
                 
                 <div className="space-y-4 text-left">
                   <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                    To craft architectural experiences that transcend conventional living. We don't follow market trends – 
-                    we listen to what spaces want to become.
+                    To craft architectural experiences that blend seamlessly with nature. We don't follow market trends – 
+                    we listen to what the environment and spaces want to become.
                   </p>
                   
                   <p className="text-base sm:text-lg text-white leading-relaxed font-medium">

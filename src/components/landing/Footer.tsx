@@ -11,7 +11,6 @@ export function Footer() {
       title: "Services",
       links: [
         { name: "Residential Construction", href: "#" },
-        { name: "Commercial Projects", href: "#" },
         { name: "Interior Design", href: "#" },
         { name: "VR Visualization", href: "#vr-experience" }
       ]
@@ -21,7 +20,6 @@ export function Footer() {
       links: [
         { name: "About Us", href: "#about" },
         { name: "Our Projects", href: "#projects" },
-        { name: "Careers", href: "#" },
         { name: "News & Updates", href: "#" }
       ]
     },
@@ -93,8 +91,8 @@ export function Footer() {
               </div>
               
               <p className="text-gray-300 leading-relaxed max-w-md">
-                Building architectural excellence with over 15 years of experience in luxury construction. 
-                We transform visions into extraordinary living spaces that stand the test of time.
+                Setting new benchmarks in architectural excellence through unwavering commitment to quality. 
+                We blend innovative design with superior craftsmanship to create timeless spaces that exceed expectations.
               </p>
 
               <h3 className="text-2xl font-bold font-heading text-white">Join Us</h3>

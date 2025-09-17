@@ -70,10 +70,10 @@ export function VRExperience() {
                     <span className="text-primary">YOUR VISION</span>
                   </h3>
                   <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed font-content">
-                    Our clients don't just see blueprints; they explore their entire villa in a virtual environment. This allows for unparalleled flexibility to make changes to interiors, layouts, and even exterior elements in real-time.
+                    Our clients don't just see blueprints; they explore their entire villa in a virtual environment. This allows for unparalleled flexibility to make changes to interiors and their finishes in real-time.
                   </p>
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-content">
-                    Imagine adjusting kitchen cabinet finishes, change of flooring or bathroom tiles, sanitary, or experimenting with lighting, all before construction begins.
+                    Imagine being able to customize kitchen cabinet finishes, changing flooring or bathroom tiles, selecting sanitary ware, or experimenting with lighting, all before construction begins.
                   </p>
                 </motion.div>
                 
