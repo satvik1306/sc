@@ -227,8 +227,8 @@ export default function ChatBot() {
       <div
         style={{
           position: 'fixed',
-          bottom: '4vw',
-          right: '4vw',
+          bottom: '24px',
+          right: '24px',
           zIndex: 99999,
           pointerEvents: 'auto',
           maxWidth: '100vw',
@@ -249,8 +249,8 @@ export default function ChatBot() {
               setIsOpen(true);
             }}
             style={{
-              width: '56px',
-              height: '56px',
+              width: '60px',
+              height: '60px',
               background: 'rgba(37, 40, 46, 0.8)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
@@ -311,12 +311,12 @@ export default function ChatBot() {
               position: 'absolute',
               bottom: '72px',
               right: 0,
-              width: '92vw',
-              maxWidth: '380px',
-              height: '70vh',
-              maxHeight: '550px',
-              minWidth: '260px',
-              minHeight: '320px',
+              width: '420px',
+              maxWidth: '92vw',
+              height: '600px',
+              maxHeight: '80vh',
+              minWidth: '300px',
+              minHeight: '400px',
               background: 'rgba(37, 40, 46, 0.85)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
@@ -393,13 +393,13 @@ export default function ChatBot() {
             <div style={{
               flex: 1,
               overflowY: 'auto',
-              padding: '20px',
+              padding: '24px',
               background: 'rgba(37, 40, 46, 0.3)',
               backdropFilter: 'blur(10px)',
               WebkitBackdropFilter: 'blur(10px)',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px'
+              gap: '20px'
             }}>
               {messages.map((message) => (
                 <motion.div
@@ -414,7 +414,7 @@ export default function ChatBot() {
                   }}
                 >
                   <div style={{
-                    maxWidth: '85%',
+                    maxWidth: '90%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: message.role === "user" ? 'flex-end' : 'flex-start'
@@ -580,7 +580,7 @@ export default function ChatBot() {
             </div>
 
             {/* Quick Questions */}
-            {messages.length === 1 && (
+            {!loading && (
               <div style={{
                 padding: '16px 20px',
                 background: 'rgba(37, 40, 46, 0.4)',
@@ -593,7 +593,7 @@ export default function ChatBot() {
                   color: 'rgba(255, 255, 255, 0.8)',
                   marginBottom: '12px',
                   fontWeight: '500'
-                }}>✨ Quick questions to get started:</p>
+                }}>✨ Suggested questions:</p>
                 <div style={{
                   display: 'flex',
                   flexWrap: 'wrap',
@@ -652,8 +652,8 @@ export default function ChatBot() {
                       width: '100%',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
                       borderRadius: '20px',
-                      padding: '12px 16px',
-                      fontSize: '14px',
+                      padding: '14px 18px',
+                      fontSize: '15px',
                       outline: 'none',
                       transition: 'all 0.2s ease',
                       background: 'rgba(255, 255, 255, 0.1)',

@@ -149,7 +149,7 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             viewport={{ amount: 0.5 }}
           >
-            <h1 className="text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight font-content leading-tight">
+            <h1 className="text-xl xxs:text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight font-content leading-tight">
               Where Luxury Meets Mindful Living
             </h1>
           </motion.div>
@@ -169,9 +169,9 @@ export const Hero = () => {
             delay: showMagazineLayout ? 0.5 : 0
           }}
         >
-          <div className="w-full lg:w-1/2 px-3 xxs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-black pt-6 xxs:pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24">
+          <div className="w-full lg:w-1/2 px-4 xxs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 text-black pt-8 xxs:pt-10 sm:pt-12 md:pt-14 lg:pt-16 xl:pt-20">
             <motion.h1 
-              className="text-base xxs:text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal leading-tight mb-2 xs:mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-black font-heading"
+              className="text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal leading-tight mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 text-black font-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -187,7 +187,7 @@ export const Hero = () => {
             </motion.h1>
             
             <motion.div
-              className="space-y-3 sm:space-y-4 md:space-y-5 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed mb-4 sm:mb-6 md:mb-8 lg:mb-10 font-content"
+              className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10 font-content"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -195,19 +195,19 @@ export const Hero = () => {
               }}
               transition={{ delay: 1.0, duration: 1.0, ease: "easeInOut" }}
             >
-              <p className="text-black text-xs xxs:text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-content leading-relaxed">
+              <p className="text-black text-sm xxs:text-base xs:text-lg sm:text-xl md:text-xl lg:text-2xl font-content leading-relaxed">
                 Luxury isn't just a finish. It's a feeling that runs through every detail. 
                 We build for moments, for silence, for stillness, for space.
               </p>
               
-              <p className="text-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-content leading-relaxed">
+              <p className="text-black text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl font-content leading-relaxed">
                 For those who have stopped searching, because what they were looking for is finally here.
               </p>
             </motion.div>
 
             {/* Buttons positioned vertically on extreme left */}
             <motion.div
-              className="flex flex-col space-y-3 sm:space-y-4 w-full max-w-sm"
+              className="flex flex-col space-y-4 sm:space-y-5 w-full max-w-sm mt-2 sm:mt-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,

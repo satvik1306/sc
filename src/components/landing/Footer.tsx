@@ -1,5 +1,7 @@
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
+import { TermsOfService } from "@/components/TermsOfService";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -28,8 +30,8 @@ export function Footer() {
       links: [
         { name: "Contact Us", href: "#contact" },
         { name: "FAQ", href: "#" },
-        { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" }
+        { name: "Privacy Policy", component: PrivacyPolicy },
+        { name: "Terms of Service", component: TermsOfService }
       ]
     }
   ];
@@ -147,16 +149,30 @@ export function Footer() {
                 <ul className="space-y-3">
                   {section.links.map((link, linkIndex) => (
                     <li key={link.name}>
-                      <motion.a
-                        href={link.href}
-                        className="text-gray-300 hover:text-primary transition-colors text-sm group"
-                        whileHover={{ x: 5 }}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 + linkIndex * 0.05, duration: 0.4 }}
-                      >
-                        {link.name}
-                      </motion.a>
+                      {link.component ? (
+                        <link.component>
+                          <motion.button
+                            className="text-gray-300 hover:text-primary transition-colors text-sm group text-left w-full"
+                            whileHover={{ x: 5 }}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5 + linkIndex * 0.05, duration: 0.4 }}
+                          >
+                            {link.name}
+                          </motion.button>
+                        </link.component>
+                      ) : (
+                        <motion.a
+                          href={link.href}
+                          className="text-gray-300 hover:text-primary transition-colors text-sm group"
+                          whileHover={{ x: 5 }}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.5 + linkIndex * 0.05, duration: 0.4 }}
+                        >
+                          {link.name}
+                        </motion.a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -184,8 +200,12 @@ export function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               >
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>
-                <a href="#" className="text-gray-400 hover:text-primary transition-colors">Terms of Service</a>
+                <PrivacyPolicy>
+                  <button className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</button>
+                </PrivacyPolicy>
+                <TermsOfService>
+                  <button className="text-gray-400 hover:text-primary transition-colors">Terms of Service</button>
+                </TermsOfService>
                 <motion.button
                   onClick={scrollToTop}
                   className="flex items-center space-x-1 text-gray-400 hover:text-primary transition-colors group"
