@@ -13,7 +13,12 @@ from collections import defaultdict
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__)
-CORS(app)
+# Update the CORS configuration to allow GitHub Pages domain
+CORS(app, origins=[
+    "http://localhost:5173",  # Local development
+    "https://satvik1306.github.io",  # Your GitHub Pages domain
+    "https://your-tunnel-url-here"  # Your dev tunnel URL
+])
 
 conversation_history = defaultdict(list)
 
@@ -37,12 +42,12 @@ def get_ollama_response(system_prompt, max_retries=3):
                     "messages": [{"role": "user", "content": system_prompt}],
                     "stream": False,
                     "options": {
-                        "temperature": 0.7,
-                        "top_p": 0.9,
+                        "temperature": 0.1,  # Much lower for factual responses
+                        "top_p": 0.3,        # More focused responses
                         "max_tokens": 150,
-                        "repeat_penalty": 1.1,
-                        "presence_penalty": 0.1,
-                        "frequency_penalty": 0.1
+                        "repeat_penalty": 1.2,  # Higher to avoid repetition
+                        "presence_penalty": 0.6,  # Discourage new topics
+                        "frequency_penalty": 0.8   # Discourage repeated phrases
                     }
                 },
                 timeout=30  # Reduced timeout
@@ -76,14 +81,21 @@ def chat():
         context_chunks = results["documents"][0]
         context = "\n\n".join(context_chunks)
 
-        # Simplified system prompt
-        system_prompt = f"""You are Saridena Constructions' AI assistant. Keep responses brief and focused.
+        # Generalized anti-hallucination system prompt
+        system_prompt = f"""You are Saridena Constructions' AI assistant.
+
+STRICT RULES:
+1. ONLY use information explicitly stated in the provided context
+2. NEVER create, invent, or imagine any project names or details
+3. Saridena Constructions has exactly ONE project: LakeWoods Villas (under construction)
+4. If information is not in the context, say "I don't have that information"
+5. Always use singular "project" never plural "projects"
 
 Context: {context}
 
-User message: "{user_message}"
+User question: "{user_message}"
 
-Answer concisely."""
+Provide a factual response using ONLY the context above. Do not add any information not found in the context."""
 
         try:
             result = get_ollama_response(system_prompt)

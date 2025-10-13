@@ -255,7 +255,7 @@ export function LakewoodVillas() {
         </div>
       </motion.section>
 
-      {/* Moving Headlines - Location 1 */}
+      {/* Moving Headlines - Above Why Choose Us */}
       <motion.section 
         className="py-12 bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 border-y border-primary/30"
         initial={{ opacity: 0 }}
@@ -263,18 +263,29 @@ export function LakewoodVillas() {
         transition={{ delay: 0.3, duration: 1 }}
       >
         <div className="container px-4">
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/40 rounded-xl p-8 md:p-12">
-            <MovingHeadlines 
-              headlines={[
-                "This Isn ' t for Everyone. That Was Always the Point.",
-                "Excellence resides here. Shouldn ' t you?",
-                "Not just a home. It ' s a statement. Ready to make yours?",
-                "Designed for the distinguished. Lived in by the worthy."
-              ]}
-              className="text-white"
-              fontSize="text-xl sm:text-2xl md:text-3xl lg:text-4xl"
-            />
-          </div>
+          <MovingHeadlines 
+            headlines={[
+              {
+                headline: "This Isn ' t for Everyone. That Was Always the Point.",
+                description: "Experience our exclusive 25,000 sq.ft. clubhouse with private guest rooms, designed for those who understand true luxury isn't about access—it's about belonging."
+              },
+              {
+                headline: "Excellence resides here. Shouldn ' t you?",
+                description: "Unwind in our dedicated wellness spaces and amphitheatre, where every detail reflects the pinnacle of premium living and architectural sophistication."
+              },
+              {
+                headline: "Not just a home. It ' s a statement. Ready to make yours?",
+                description: "Play on world-class pickleball courts surrounded by expansive green zones, where recreation meets the artistry of intentional community design."
+              },
+              {
+                headline: "Designed for the distinguished. Lived in by the worthy.",
+                description: "Protected by 24x7 premium security and eco-smart living systems, every aspect ensures your sanctuary remains private, secure, and environmentally conscious."
+              }
+            ]}
+            className="text-white"
+            fontSize="text-xl sm:text-2xl md:text-3xl lg:text-4xl"
+            showDescriptions={true}
+          />
         </div>
       </motion.section>
 
@@ -444,27 +455,6 @@ export function LakewoodVillas() {
               </div>
             </motion.div>
 
-            {/* Moving Headlines - Specifications */}
-            <motion.section 
-              className="py-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-            >
-              <div className="bg-slate-800/80 backdrop-blur-sm border border-primary/30 rounded-xl p-8 md:p-12">
-                <MovingHeadlines 
-                  headlines={[
-                    "Precision in every detail. Perfection in every dimension.",
-                    "Where luxury meets functionality. Where elegance meets purpose.",
-                    "Space that speaks volumes. Design that tells stories.",
-                    "Built for those who appreciate the extraordinary."
-                  ]}
-                  className="text-white"
-                  fontSize="text-xl sm:text-2xl md:text-3xl"
-                />
-              </div>
-            </motion.section>
-
             {/* Community Features */}
             <motion.div
               className="bg-slate-700/90 backdrop-blur-sm border border-slate-500/40 p-8 md:p-12 rounded-lg shadow-lg mb-16 hover:bg-slate-600/90 hover:border-primary/50 hover:shadow-2xl transition-all duration-300 text-white"
@@ -491,27 +481,6 @@ export function LakewoodVillas() {
               </div>
             </motion.div>
 
-            {/* Moving Headlines - Community */}
-            <motion.section 
-              className="py-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-            >
-              <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 border border-primary/30 rounded-xl p-8 md:p-12">
-                <MovingHeadlines 
-                  headlines={[
-                    "A community of distinction. A lifestyle of excellence.",
-                    "Where nature and luxury exist in perfect harmony.",
-                    "Privacy isn ' t just promised. It ' s architected.",
-                    "Live where others dream to visit."
-                  ]}
-                  className="text-white"
-                  fontSize="text-xl sm:text-2xl md:text-3xl"
-                />
-              </div>
-            </motion.section>
-
             {/* Amenities */}
             <motion.div
               initial={{ y: 50, opacity: 0 }}
@@ -536,55 +505,9 @@ export function LakewoodVillas() {
                 ))}
               </div>
             </motion.div>
-
-            {/* Moving Headlines - Amenities */}
-            <motion.section 
-              className="py-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-            >
-              <div className="bg-slate-700/90 backdrop-blur-sm border border-primary/30 rounded-xl p-8 md:p-12">
-                <MovingHeadlines 
-                  headlines={[
-                    "World-class amenities. World-class living.",
-                    "Every comfort considered. Every luxury included.",
-                    "Where wellness meets indulgence.",
-                    "Your private sanctuary awaits."
-                  ]}
-                  className="text-white"
-                  fontSize="text-xl sm:text-2xl md:text-3xl"
-                />
-              </div>
-            </motion.section>
           </div>
         </div>
       </section>
-
-      {/* Moving Headlines - Location 2 */}
-      <motion.section
-        className="py-12"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.3, duration: 0.8 }}
-      >
-        <div className="container px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-700/95 border-2 border-primary/40 rounded-3xl p-10 md:p-16 text-center shadow-2xl backdrop-blur-lg">
-              <MovingHeadlines 
-                headlines={[
-                  "This Isn ' t for Everyone. That Was Always the Point.",
-                  "Excellence resides here. Shouldn ' t you?",
-                  "Not just a home. It ' s a statement. Ready to make yours?",
-                  "Designed for the distinguished. Lived in by the worthy."
-                ]}
-                className="text-white"
-                fontSize="text-xl sm:text-2xl md:text-3xl lg:text-4xl"
-              />
-            </div>
-          </div>
-        </div>
-      </motion.section>
 
       {/* CTA Section */}
       <motion.section
@@ -611,7 +534,6 @@ export function LakewoodVillas() {
               </div>
               <div className="space-y-2">
                 <p className="flex items-center gap-2"><span>🏛</span> 25,000 sq.ft Clubhouse | Private Guest Rooms</p>
-                <p className="flex items-center gap-2"><span>🔋</span> Eco-Smart Living</p>
                 <p className="flex items-center gap-2"><span>🧿</span> 100% Vaastu Compliant Design</p>
                 <p className="flex items-center gap-2"><span>🎓</span> Close to top international schools & hospitals</p>
               </div>
