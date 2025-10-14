@@ -211,13 +211,13 @@ export default function ChatBot() {
       <style>{`
         @media (max-width: 600px) {
           .chatbot-modal {
-            width: 98vw !important;
+            width: 95vw !important;
             min-width: 0 !important;
             max-width: 100vw !important;
-            height: 80vh !important;
-            min-height: 200px !important;
-            max-height: 90vh !important;
-            border-radius: 10px !important;
+            height: 70vh !important;
+            min-height: 180px !important;
+            max-height: 80vh !important;
+            border-radius: 8px !important;
             right: 0 !important;
             left: 0 !important;
             margin: 0 auto !important;
@@ -311,12 +311,12 @@ export default function ChatBot() {
               position: 'absolute',
               bottom: '72px',
               right: 0,
-              width: '420px',
-              maxWidth: '92vw',
-              height: '600px',
-              maxHeight: '80vh',
-              minWidth: '300px',
-              minHeight: '400px',
+              width: '350px',
+              maxWidth: '90vw',
+              height: '480px',
+              maxHeight: '70vh',
+              minWidth: '280px',
+              minHeight: '320px',
               background: 'rgba(37, 40, 46, 0.85)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
@@ -337,34 +337,34 @@ export default function ChatBot() {
               border: '1px solid rgba(255, 255, 255, 0.1)',
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
               color: 'white',
-              padding: '20px',
+              padding: '12px 16px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ position: 'relative' }}>
                   <div style={{
                     backgroundColor: 'rgba(255,255,255,0.2)',
-                    borderRadius: '12px',
-                    padding: '8px'
+                    borderRadius: '8px',
+                    padding: '6px'
                   }}>
-                    <Home size={20} />
+                    <Home size={16} />
                   </div>
                   <div style={{
                     position: 'absolute',
-                    bottom: '-2px',
-                    right: '-2px',
-                    width: '12px',
-                    height: '12px',
+                    bottom: '-1px',
+                    right: '-1px',
+                    width: '8px',
+                    height: '8px',
                     backgroundColor: '#10b981',
                     borderRadius: '50%',
-                    border: '2px solid white'
+                    border: '1px solid white'
                   }}></div>
                 </div>
                 <div>
-                  <h3 style={{ fontWeight: 'bold', fontSize: '18px', margin: 0, fontFamily: 'Bileha, sans-serif' }}>AI Villa Assistant</h3>
-                  <p style={{ fontSize: '12px', opacity: 0.9, margin: 0 }}>Saridena Constructions • AI Powered</p>
+                  <h3 style={{ fontWeight: 'bold', fontSize: '14px', margin: 0, fontFamily: 'Bileha, sans-serif' }}>AI Villa Assistant</h3>
+                  <p style={{ fontSize: '10px', opacity: 0.9, margin: 0 }}>Saridena Constructions • AI Powered</p>
                 </div>
               </div>
               <button
@@ -393,13 +393,13 @@ export default function ChatBot() {
             <div style={{
               flex: 1,
               overflowY: 'auto',
-              padding: '24px',
+              padding: '16px',
               background: 'rgba(37, 40, 46, 0.3)',
               backdropFilter: 'blur(10px)',
               WebkitBackdropFilter: 'blur(10px)',
               display: 'flex',
               flexDirection: 'column',
-              gap: '20px'
+              gap: '12px'
             }}>
               {messages.map((message) => (
                 <motion.div
@@ -427,11 +427,11 @@ export default function ChatBot() {
                       WebkitBackdropFilter: 'blur(10px)',
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       color: 'white',
-                      padding: '12px 16px',
-                      borderRadius: message.role === "user" ? '20px 20px 6px 20px' : '20px 20px 20px 6px',
+                      padding: '8px 12px',
+                      borderRadius: message.role === "user" ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
                       boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
-                      fontSize: '14px',
-                      lineHeight: '1.5',
+                      fontSize: '13px',
+                      lineHeight: '1.4',
                       wordWrap: 'break-word'
                     }}>
                       {message.role === "user" ? (
@@ -582,22 +582,22 @@ export default function ChatBot() {
             {/* Quick Questions */}
             {!loading && (
               <div style={{
-                padding: '16px 20px',
+                padding: '12px 16px',
                 background: 'rgba(37, 40, 46, 0.4)',
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
                 borderTop: '1px solid rgba(255, 255, 255, 0.1)'
               }}>
                 <p style={{
-                  fontSize: '12px',
+                  fontSize: '11px',
                   color: 'rgba(255, 255, 255, 0.8)',
-                  marginBottom: '12px',
+                  marginBottom: '8px',
                   fontWeight: '500'
                 }}>✨ Suggested questions:</p>
                 <div style={{
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: '8px'
+                  gap: '6px'
                 }}>
                   {quickQuestions.map((question, index) => (
                     <motion.button
@@ -609,14 +609,14 @@ export default function ChatBot() {
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleQuickQuestion(question)}
                       style={{
-                        fontSize: '12px',
+                        fontSize: '11px',
                         background: 'rgba(255, 255, 255, 0.12)',
                         backdropFilter: 'blur(15px)',
                         WebkitBackdropFilter: 'blur(15px)',
                         border: '1px solid rgba(255, 255, 255, 0.25)',
                         color: 'white',
-                        padding: '8px 12px',
-                        borderRadius: '20px',
+                        padding: '6px 10px',
+                        borderRadius: '16px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         boxShadow: '0 2px 12px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.15)'
@@ -632,12 +632,12 @@ export default function ChatBot() {
             {/* Input */}
             <div style={{
               borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-              padding: '20px',
+              padding: '12px 16px',
               background: 'rgba(37, 40, 46, 0.4)',
               backdropFilter: 'blur(10px)',
               WebkitBackdropFilter: 'blur(10px)'
             }}>
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
                 <div style={{ flex: 1, position: 'relative' }}>
                   <input
                     ref={inputRef}
@@ -651,9 +651,9 @@ export default function ChatBot() {
                     style={{
                       width: '100%',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
-                      borderRadius: '20px',
-                      padding: '14px 18px',
-                      fontSize: '15px',
+                      borderRadius: '16px',
+                      padding: '10px 14px',
+                      fontSize: '13px',
                       outline: 'none',
                       transition: 'all 0.2s ease',
                       background: 'rgba(255, 255, 255, 0.1)',
@@ -678,8 +678,8 @@ export default function ChatBot() {
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     color: 'white',
                     borderRadius: '50%',
-                    width: '48px',
-                    height: '48px',
+                    width: '36px',
+                    height: '36px',
                     cursor: input.trim() && !loading ? 'pointer' : 'not-allowed',
                     display: 'flex',
                     alignItems: 'center',
@@ -690,7 +690,7 @@ export default function ChatBot() {
                       : '0 2px 8px rgba(0, 0, 0, 0.2)'
                   }}
                 >
-                  <Send size={18} />
+                  <Send size={14} />
                 </motion.button>
               </div>
             </div>

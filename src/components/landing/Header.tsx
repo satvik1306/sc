@@ -45,7 +45,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
         <motion.nav
-          className={`hidden md:flex items-center justify-between mt-4 lg:mt-6 px-4 sm:px-6 lg:px-8 py-3 lg:py-4 rounded-xl lg:rounded-2xl border transition-all duration-500 ${
+          className={`hidden md:flex items-center justify-center gap-6 lg:gap-8 mt-2 lg:mt-3 px-4 sm:px-6 lg:px-8 py-2 lg:py-2.5 rounded-xl lg:rounded-2xl border transition-all duration-500 w-fit mx-auto ${
             isScrolled 
               ? 'bg-background/95 backdrop-blur-xl border-border/50 shadow-lg' 
               : 'bg-background/80 backdrop-blur-md border-border/20 shadow-md'
@@ -66,12 +66,12 @@ export function Header() {
             <img 
               src={`${import.meta.env.BASE_URL}photos/saridena_logo.png`}
               alt="Saridena Constructions Logo"
-              className="h-6 xxs:h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
+              className="h-5 xxs:h-6 sm:h-7 md:h-8 lg:h-8 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
             />
           </motion.div>
 
           {/* Navigation Links */}
-          <div           className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10">
+          <div           className="flex items-center space-x-3 sm:space-x-4 md:space-x-6 lg:space-x-7">
             {navLinks.map((link, i) => (
               <motion.a
                 key={link.href}
@@ -97,12 +97,12 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <motion.div
-          className="md:hidden mt-1 xxs:mt-2 sm:mt-3 md:mt-4"
+          className="md:hidden mt-1 xxs:mt-1 sm:mt-2 md:mt-2"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 rounded-xl border transition-all duration-500 ${
+          <div className={`flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl border transition-all duration-500 ${
             isScrolled 
               ? 'bg-background/95 backdrop-blur-xl border-border/50 shadow-lg' 
               : 'bg-background/80 backdrop-blur-md border-border/20 shadow-md'
@@ -117,7 +117,7 @@ export function Header() {
               <img 
                 src={`${import.meta.env.BASE_URL}photos/saridena_logo.png`}
                 alt="Saridena Constructions Logo"
-                className="h-6 sm:h-7 md:h-8 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
+                className="h-5 sm:h-6 md:h-7 w-auto object-contain filter drop-shadow-md transition-all duration-300 hover:brightness-110 dark:invert dark:brightness-0"
               />
             </div>
 
@@ -125,7 +125,7 @@ export function Header() {
             <div className="flex items-center space-x-3">
               <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-3 rounded-lg hover:bg-muted/50 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+                className="p-2 rounded-lg hover:bg-muted/50 transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center touch-manipulation"
                 whileTap={{ scale: 0.95 }}
               >
                 <AnimatePresence mode="wait">
