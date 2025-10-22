@@ -169,9 +169,9 @@ export const Hero = () => {
             delay: showMagazineLayout ? 0.5 : 0
           }}
         >
-          <div className="w-full lg:w-1/2 px-4 xxs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 text-black pt-8 xxs:pt-10 sm:pt-12 md:pt-14 lg:pt-16 xl:pt-20">
+          <div className="w-full lg:w-1/2 px-3 xxs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 text-black pt-6 xxs:pt-7 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-14">
             <motion.h1 
-              className="text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal leading-tight mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 text-black font-heading"
+              className="text-lg xxs:text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl font-normal leading-tight mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 text-black font-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -187,7 +187,7 @@ export const Hero = () => {
             </motion.h1>
             
             <motion.div
-              className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10 font-content"
+              className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10 font-content"
               initial={{ opacity: 0, y: 30 }}
               animate={{ 
                 opacity: showMagazineLayout ? 1 : 0,
@@ -195,12 +195,12 @@ export const Hero = () => {
               }}
               transition={{ delay: 1.0, duration: 1.0, ease: "easeInOut" }}
             >
-              <p className="text-black text-sm xxs:text-base xs:text-lg sm:text-xl md:text-xl lg:text-2xl font-content leading-relaxed">
+              <p className="text-black text-sm sm:text-base md:text-lg lg:text-lg xl:text-lg font-content leading-relaxed">
                 Luxury isn't just a finish. It's a feeling that runs through every detail. 
                 We build for moments, for silence, for stillness, for space.
               </p>
               
-              <p className="text-black text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl font-content leading-relaxed">
+              <p className="text-black text-sm sm:text-base md:text-lg lg:text-lg xl:text-lg font-content leading-relaxed">
                 For those who have stopped searching, because what they were looking for is finally here.
               </p>
             </motion.div>
@@ -218,17 +218,17 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full min-h-[40px] xxs:min-h-[44px] sm:min-h-[48px] px-3 xxs:px-4 sm:px-6 md:px-8 text-xs xxs:text-sm sm:text-base md:text-lg touch-manipulation"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 w-half min-h-[40px] xxs:min-h-[44px] sm:min-h-[48px] px-3 xxs:px-4 sm:px-6 md:px-8 text-xs xxs:text-sm sm:text-base md:text-base touch-manipulation"
               >
                 <a href="#projects">
-                  Explore Portfolio <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  Explore Portfolio <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-black text-black bg-white/90 hover:bg-white hover:text-white w-full min-h-[48px] px-4 sm:px-6 md:px-8 backdrop-blur-sm text-sm sm:text-base md:text-lg hover:border-primary transition-all duration-300 touch-manipulation"
+                className="border-black text-black bg-white/90 w-100px min-h-[48px] px-4 sm:px-6 md:px-8 backdrop-blur-sm text-sm sm:text-base md:text-base hover:border-primary transition-all duration-300 touch-manipulation"
               >
                 <a href="#contact">Start Your Project</a>
               </Button>
@@ -243,16 +243,16 @@ export const Hero = () => {
       {/* Moving Headline */}
       {showMagazineLayout && (
         <motion.div
-          className="absolute bottom-16 xs:bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32 left-1/2 transform -translate-x-1/2 z-30 w-[90%] xs:w-[85%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%] max-w-6xl px-2 xs:px-3 sm:px-4"
-          initial={{ opacity: 0, y: 30 }}
+          className="absolute bottom-2 sm:bottom-3 md:bottom-4 lg:bottom-6 left-1/2 transform -translate-x-1/2 z-20 w-[80%] sm:w-[70%] md:w-[60%] lg:w-[50%] max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.0, duration: 1.0, ease: "easeInOut" }}
         >
-          <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-primary/30 rounded-lg sm:rounded-xl shadow-2xl p-3 xs:p-4 sm:p-5 md:p-6 lg:p-8">
+          <div>
             <MovingHeadlines 
               headlines={["Afford Luxury or Deserve It?"]}
-              className="text-white"
-              fontSize="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
+              className="text-white font-medium"
+              fontSize="text-sm sm:text-base md:text-lg lg:text-xl"
             />
           </div>
         </motion.div>

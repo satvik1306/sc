@@ -1,4 +1,4 @@
-﻿from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import chromadb
 from chromadb import PersistentClient
@@ -17,7 +17,8 @@ app = Flask(__name__)
 CORS(app, origins=[
     "http://localhost:5173",  # Local development
     "https://satvik1306.github.io",  # Your GitHub Pages domain
-    "https://your-tunnel-url-here"  # Your dev tunnel URL
+    "https://qc2jp509-5000.inc1.devtunnels.ms",  # Your dev tunnel URL
+    "https://saridena.satvikbeeravelli.com"
 ])
 
 conversation_history = defaultdict(list)

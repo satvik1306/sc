@@ -28,9 +28,12 @@ function App() {
   });
 
   const [loading, setLoading] = useState(() => {
-    // Only show loader on home page, not on LakeWoods page
+    // Check if user has visited before
+    const hasVisited = localStorage.getItem('saridena-has-visited');
     const hash = window.location.hash;
-    return hash !== '#lakewood-villas';
+    
+    // Only show loader if it's first visit and not on LakeWoods page
+    return !hasVisited && hash !== '#lakewood-villas';
   });
 
   // Debug log to track page changes
@@ -44,6 +47,8 @@ function App() {
       const timer = setTimeout(() => {
         console.log('Loading complete, current page:', currentPage); // Debug log
         setLoading(false);
+        // Mark that user has visited the site
+        localStorage.setItem('saridena-has-visited', 'true');
       }, 3000);
       return () => clearTimeout(timer);
     }

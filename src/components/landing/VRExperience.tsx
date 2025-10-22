@@ -34,45 +34,45 @@ export function VRExperience() {
   }, []);
 
   return (
-    <section id="vr-experience" className="bg-muted/30 py-8 md:py-16 lg:py-20" ref={sectionRef}>
+    <section id="vr-experience" className="bg-background py-2 md:py-4 lg:py-6" ref={sectionRef}>
       <div className="container px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:space-x-8">
+        <div className="flex flex-col lg:flex-row lg:space-x-6">
           <div className="lg:w-3/4">
             {/* Magazine-style header */}
             <motion.div
-              className="mb-12 md:mb-20"
+              className="mb-6 md:mb-8"
               variants={magazineVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-4 font-heading">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight mb-3 font-heading">
                 VR
                 <br />
                 <span className="text-primary">EXPERIENCE</span>
               </h2>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl font-content">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl font-content">
                 Step into your future home before it's built. Revolutionary technology meets architectural excellence.
               </p>
             </motion.div>
 
             {/* First magazine spread */}
-            <div className="mb-16 md:mb-24">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="mb-8 md:mb-12">
+              <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-center">
                 <motion.div
                   variants={magazineVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   transition={{ delay: 0.3 }}
                 >
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-tight font-heading">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 leading-tight font-heading">
                     WALK THROUGH
                     <br />
                     <span className="text-primary">YOUR VISION</span>
                   </h3>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed font-content">
+                  <p className="text-sm md:text-base text-muted-foreground mb-4 leading-relaxed font-content">
                     Our clients don't just see blueprints; they explore their entire villa in a virtual environment. This allows for unparalleled flexibility to make changes to interiors and their finishes in real-time.
                   </p>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-content">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-content">
                     Imagine being able to customize kitchen cabinet finishes, changing flooring or bathroom tiles, selecting sanitary ware, or experimenting with lighting, all before construction begins.
                   </p>
                 </motion.div>
@@ -82,16 +82,16 @@ export function VRExperience() {
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   transition={{ delay: 0.5 }}
-                  className="relative rounded-lg overflow-hidden shadow-2xl image-container"
+                  className="relative rounded-lg overflow-hidden shadow-2xl image-container max-w-md mx-auto lg:max-w-full"
                 >
                   <img
                     src={`${import.meta.env.BASE_URL}photos/vr/vr_walkthrough.png`}
                     alt="VR Walkthrough"
-                    className="w-full h-auto object-cover high-quality-image"
+                    className="w-full h-48 md:h-56 lg:h-64 object-cover high-quality-image"
                     loading="eager"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-xl md:text-2xl font-bold text-center p-6 font-content">
+                    <p className="text-white text-base md:text-lg font-bold text-center p-4 font-content">
                       "Explore every corner, feel the space, make it truly yours."
                     </p>
                   </div>
@@ -100,23 +100,23 @@ export function VRExperience() {
             </div>
 
             {/* Second magazine spread - reversed layout */}
-            <div className="mb-16 md:mb-24">
-              <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="mb-8 md:mb-12">
+              <div className="grid lg:grid-cols-2 gap-4 md:gap-6 items-center">
                 <motion.div
                   variants={imageVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   transition={{ delay: 0.7 }}
-                  className="relative rounded-lg overflow-hidden shadow-2xl lg:order-2 image-container"
+                  className="relative rounded-lg overflow-hidden shadow-2xl lg:order-2 image-container max-w-md mx-auto lg:max-w-full"
                 >
                   <img
                     src={`${import.meta.env.BASE_URL}photos/vr/vr_customization.png`}
                     alt="VR Customization"
-                    className="w-full h-auto object-cover high-quality-image"
+                    className="w-full h-48 md:h-56 lg:h-64 object-cover high-quality-image"
                     loading="eager"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-xl md:text-2xl font-bold text-center p-6 font-content">
+                    <p className="text-white text-base md:text-lg font-bold text-center p-4 font-content">
                       "Your vision, our expertise, perfected in virtual reality."
                     </p>
                   </div>
@@ -129,15 +129,15 @@ export function VRExperience() {
                   transition={{ delay: 0.9 }}
                   className="lg:order-1"
                 >
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 leading-tight font-heading">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 leading-tight font-heading">
                     UNMATCHED
                     <br />
                     <span className="text-primary">PRECISION</span>
                   </h3>
-                  <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed font-content">
+                  <p className="text-sm md:text-base text-muted-foreground mb-4 leading-relaxed font-content">
                     Our VR experience isn't just for viewing; it's a powerful design tool. Clients can interact with the environment, change materials and furniture, with immediate visual feedback.
                   </p>
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-content">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-content">
                     This iterative design process minimizes costly revisions during construction and ensures every detail aligns with your desires.
                   </p>
                 </motion.div>
@@ -145,7 +145,7 @@ export function VRExperience() {
             </div>
           </div>
           
-          <div className="lg:w-1/4 mt-8 lg:mt-0">
+          <div className="lg:w-1/4 mt-4 lg:mt-0">
             <SideAd />
           </div>
         </div>

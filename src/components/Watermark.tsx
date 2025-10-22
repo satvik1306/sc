@@ -1,5 +1,5 @@
 export function Watermark() {
-  const imagePath = `${import.meta.env.BASE_URL}photos/saridena_logo.png`;
+  const imagePath = `${import.meta.env.BASE_URL}photos/watermark.png`;
   
   return (
     <div

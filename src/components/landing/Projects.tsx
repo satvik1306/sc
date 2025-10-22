@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { Play, ExternalLink, ArrowRight } from "lucide-react";
+import { Play, ExternalLink, ArrowRight, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const allProjects: Record<string, any> = {
@@ -42,6 +42,7 @@ export function Projects() {
   const [isInView, setIsInView] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,7 +85,15 @@ export function Projects() {
 
   const handleExploreProject = () => {
     if (selectedProject === "LakeWoods Villas") {
-      window.dispatchEvent(new CustomEvent('navigateToLakewood'));
+      // TODO: Replace with actual LakeWoods domain when purchased
+      // window.open('https://YOUR_LAKEWOODS_DOMAIN.com', '_blank');
+      
+      // Temporary: Keep current functionality until domains are ready
+      const newTab = window.open('', '_blank');
+      if (newTab) {
+        newTab.document.title = 'Lakewoods Villas by Saridena Constructions';
+        newTab.location.href = window.location.origin + window.location.pathname + '#lakewood-villas';
+      }
     }
   };
 
@@ -105,41 +114,32 @@ export function Projects() {
     <motion.section
       id="projects"
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-muted/30 relative overflow-hidden"
+      className="py-6 lg:py-8 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/30 to-background" />
       <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <motion.div
-            className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <span className="text-primary font-medium">Our Portfolio</span>
-          </motion.div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 font-heading">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 font-heading">
             Featured
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
               Projects
             </span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Explore our portfolio of exceptional architectural projects, each crafted with precision 
             and designed to exceed expectations.
           </p>
@@ -147,9 +147,9 @@ export function Projects() {
 
         {/* Project Selection and Details */}
         <motion.div
-          className={`transition-all duration-700 ease-in-out ${
+          className={`transition-all duration-300 ease-in-out ${
             selectedProject 
-              ? 'grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12 items-start' 
+              ? 'grid lg:grid-cols-[350px_1fr] gap-6 lg:gap-8 items-start' 
               : 'flex justify-center'
           }`}
           initial={{ opacity: 0, y: 30 }}
@@ -158,59 +158,103 @@ export function Projects() {
         >
           {/* Project Selection Container */}
           <motion.div
-            className={`transition-all duration-700 ease-in-out ${
+            className={`transition-all duration-300 ease-in-out ${
               selectedProject ? 'w-full' : 'max-w-4xl w-full'
             }`}
             layout
           >
-            <div className="bg-slate-700/90 backdrop-blur-lg border-2 border-slate-500/60 p-4 lg:p-6 rounded-3xl shadow-xl hover:shadow-2xl hover:border-primary/50 hover:bg-slate-600/90 transition-all duration-300 text-white">
-              <div className="text-center mb-4 lg:mb-6">
-                <h3 className="text-xl lg:text-2xl font-bold mb-1 lg:mb-2 font-heading">Select a Project</h3>
-                <p className="text-sm lg:text-base text-gray-300">Choose from our collection of premium developments</p>
-              </div>
+            <div className="bg-slate-700/90 backdrop-blur-lg border-2 border-slate-500/60 p-3 lg:p-4 rounded-2xl shadow-xl hover:shadow-2xl hover:border-primary/50 hover:bg-slate-600/90 transition-all duration-300 text-white">
+              {!selectedProject ? (
+                <>
+                  <div className="text-center mb-3 lg:mb-4">
+                    <h3 className="text-lg lg:text-xl font-bold mb-1 font-heading">Select a Project</h3>
+                    <p className="text-xs lg:text-sm text-gray-300">Choose from our collection of premium developments</p>
+                  </div>
 
-              {/* Project Buttons Grid */}
-              <div className="grid grid-cols-1 gap-2 lg:gap-3">
-                {Object.entries(allProjects).map(([projectName, project]) => (
-                  <motion.button
-                    key={projectName}
-                    onClick={() => setSelectedProject(projectName)}
-                    className={`p-3 lg:p-4 rounded-xl border-2 transition-all duration-300 text-left group hover:scale-[1.02] touch-manipulation ${
-                      selectedProject === projectName
-                        ? 'border-primary bg-primary/10 shadow-lg'
-                        : 'border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5'
-                    }`}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: Object.keys(allProjects).indexOf(projectName) * 0.1, duration: 0.4 }}
-                  >
-                    <div className="space-y-2">
-                      {/* Top row - Title, Status, Type */}
-                      <div className="flex items-center justify-between">
-                        <h4 className="font-bold text-base lg:text-lg font-heading text-white">{projectName}</h4>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs text-accent font-medium">{project.type}</span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
-                            {project.status}
-                          </span>
+                  {/* Project Buttons Grid - Full Details */}
+                  <div className="grid grid-cols-1 gap-2 lg:gap-3">
+                    {Object.entries(allProjects).map(([projectName, project]) => (
+                      <motion.button
+                        key={projectName}
+                        onClick={() => setSelectedProject(projectName)}
+                        className={`p-2 lg:p-3 rounded-lg border-2 transition-all duration-300 text-left group hover:scale-[1.02] touch-manipulation ${
+                          selectedProject === projectName
+                            ? 'border-primary bg-primary/10 shadow-lg'
+                            : 'border-border/50 bg-background/50 hover:border-primary/50 hover:bg-primary/5'
+                        }`}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: Object.keys(allProjects).indexOf(projectName) * 0.1, duration: 0.4 }}
+                      >
+                        <div className="space-y-1.5">
+                          {/* Top row - Title, Status, Type */}
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-bold text-sm lg:text-base font-heading text-white">{projectName}</h4>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-accent font-medium">{project.type}</span>
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
+                                {project.status}
+                              </span>
+                            </div>
+                          </div>
+                          
+                          {/* Description below title */}
+                          <p className="text-xs text-gray-300 leading-snug line-clamp-2">{project.description}</p>
+                          
+                          {/* Arrow Icon */}
+                          <div className="flex justify-end">
+                            <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${
+                              selectedProject === projectName ? 'text-primary' : 'text-gray-300 group-hover:text-primary'
+                            } group-hover:translate-x-1`} />
+                          </div>
                         </div>
-                      </div>
-                      
-                      {/* Description below title */}
-                      <p className="text-xs lg:text-sm text-gray-300 leading-relaxed line-clamp-2">{project.description}</p>
-                      
-                      {/* Arrow Icon */}
-                      <div className="flex justify-end">
-                        <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${
-                          selectedProject === projectName ? 'text-primary' : 'text-gray-300 group-hover:text-primary'
-                        } group-hover:translate-x-1`} />
-                      </div>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Side List - Project Names Only */}
+                  <div className="text-center mb-3">
+                    <h3 className="text-base font-bold mb-1.5 font-heading">Projects</h3>
+                    <button
+                      onClick={() => setSelectedProject("")}
+                      className="text-xs text-gray-300 hover:text-primary transition-colors underline"
+                    >
+                      Clear Selection
+                    </button>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    {Object.keys(allProjects).map((projectName) => (
+                      <motion.button
+                        key={projectName}
+                        onClick={() => {
+                          if (selectedProject === projectName) {
+                            setSelectedProject("");
+                          } else {
+                            setSelectedProject(projectName);
+                          }
+                        }}
+                        className={`w-full p-1.5 rounded-lg border transition-all duration-300 text-left hover:scale-[1.02] touch-manipulation ${
+                          selectedProject === projectName
+                            ? 'border-primary bg-primary/20 text-primary font-semibold'
+                            : 'border-border/50 bg-background/30 text-white hover:border-primary/50 hover:bg-primary/10'
+                        }`}
+                        whileHover={{ y: -1 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: Object.keys(allProjects).indexOf(projectName) * 0.05, duration: 0.3 }}
+                      >
+                        <span className="text-xs font-medium">{projectName}</span>
+                      </motion.button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
 
@@ -218,22 +262,26 @@ export function Projects() {
           <AnimatePresence>
             {selectedProject && (
               <motion.div
-                className="space-y-3 lg:space-y-4"
+                className="space-y-2 lg:space-y-3"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: 0.1,
+                  exit: { duration: 0.2, delay: 0 }
+                }}
               >
                 {/* Project Info */}
                 <div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-heading">{selectedProject}</h3>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-heading">{selectedProject}</h3>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border w-fit ${getStatusColor(allProjects[selectedProject].status)}`}>
                       {allProjects[selectedProject].status}
                     </span>
                   </div>
                   
-                  <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                  <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-2 sm:mb-3 line-clamp-3">
                     {allProjects[selectedProject].description}
                   </p>
 
@@ -243,10 +291,10 @@ export function Projects() {
                 </div>
 
                 {/* Features and Video Side-by-Side */}
-                <div className={`grid ${showVideoPreview ? 'lg:grid-cols-1' : 'lg:grid-cols-[1fr_400px]'} gap-4 lg:gap-6 items-start`}>
+                <div className={`grid ${showVideoPreview ? 'lg:grid-cols-1' : 'lg:grid-cols-[1fr_350px]'} gap-3 lg:gap-4 items-start`}>
                   {/* Features */}
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold mb-2 sm:mb-3 font-heading">Key Features</h4>
+                    <h4 className="text-sm sm:text-base font-bold mb-1.5 sm:mb-2 font-heading">Key Features</h4>
                     <div className="space-y-1">
                       {allProjects[selectedProject].features.map((feature: string, index: number) => (
                         <motion.div
@@ -265,7 +313,8 @@ export function Projects() {
 
                   {/* Project Visual - Fills available height */}
                   <div 
-                    className={`relative ${showVideoPreview ? 'lg:min-h-[500px]' : 'lg:min-h-[250px]'} flex flex-col cursor-pointer transition-all duration-500`}
+                    ref={videoContainerRef}
+                    className={`relative ${showVideoPreview ? 'lg:min-h-[400px]' : 'lg:min-h-[200px]'} flex flex-col cursor-pointer transition-all duration-500`}
                     onClick={() => {
                       if (showVideoPreview) {
                         console.log('🎬 Container clicked while video playing! Stopping video...');
@@ -329,6 +378,16 @@ export function Projects() {
                             onClick={() => {
                               console.log('🎯 HOVER BUTTON CLICKED! Setting showVideoPreview to:', !showVideoPreview);
                               setShowVideoPreview(!showVideoPreview);
+                              
+                              // Auto-scroll to video player when starting video
+                              if (!showVideoPreview && videoContainerRef.current) {
+                                setTimeout(() => {
+                                  videoContainerRef.current?.scrollIntoView({ 
+                                    behavior: 'smooth', 
+                                    block: 'center' 
+                                  });
+                                }, 100);
+                              }
                             }}
                           >
                             <div className="bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 min-h-[44px] px-6 py-3 rounded-lg flex items-center gap-2 pointer-events-none">
@@ -345,13 +404,13 @@ export function Projects() {
 
                     {/* Floating Stats - Restored styling */}
                     <motion.div
-                      className="absolute -bottom-3 -right-3 bg-slate-700/95 backdrop-blur-lg border-2 border-slate-500/60 p-3 lg:p-4 rounded-xl shadow-lg hover:shadow-xl hover:bg-slate-600/95 transition-all duration-300 text-white"
+                      className="absolute -bottom-2 -right-2 bg-slate-700/95 backdrop-blur-lg border-2 border-slate-500/60 p-2 lg:p-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-slate-600/95 transition-all duration-300 text-white"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.6, duration: 0.6 }}
                     >
                       <div className="text-center">
-                        <div className="text-lg lg:text-xl font-bold text-accent font-heading">3D</div>
+                        <div className="text-sm lg:text-base font-bold text-accent font-heading">3D</div>
                         <div className="text-xs text-gray-300">VR Ready</div>
                       </div>
                     </motion.div>
@@ -359,11 +418,12 @@ export function Projects() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3">
                   <Button 
-                    size="lg"
+                    size="default"
+                    formTarget="_blank"
                     onClick={handleExploreProject}
-                    className="group bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-semibold rounded-xl min-h-[48px] touch-manipulation"
+                    className="group bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 text-base font-semibold rounded-lg min-h-[44px] touch-manipulation"
                   >
                     <ExternalLink size={20} className="mr-2" />
                     Explore Project

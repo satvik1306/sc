@@ -1,21 +1,9 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
-  
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 1]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { href: '#home', label: 'Home' },
@@ -38,18 +26,11 @@ export function Header() {
   return (
     <motion.div 
       className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 lg:px-8"
-      style={{ 
-        opacity: headerOpacity,
-      }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
         <motion.nav
-          className={`hidden md:flex items-center justify-center gap-6 lg:gap-8 mt-2 lg:mt-3 px-4 sm:px-6 lg:px-8 py-2 lg:py-2.5 rounded-xl lg:rounded-2xl border transition-all duration-500 w-fit mx-auto ${
-            isScrolled 
-              ? 'bg-background/95 backdrop-blur-xl border-border/50 shadow-lg' 
-              : 'bg-background/80 backdrop-blur-md border-border/20 shadow-md'
-          }`}
+          className="hidden md:flex items-center justify-center gap-6 lg:gap-8 mt-2 lg:mt-3 px-4 sm:px-6 lg:px-8 py-2 lg:py-2.5 rounded-xl lg:rounded-2xl border transition-all duration-500 w-fit mx-auto bg-background/70 backdrop-blur-md border-border/30 shadow-md"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -102,11 +83,7 @@ export function Header() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className={`flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl border transition-all duration-500 ${
-            isScrolled 
-              ? 'bg-background/95 backdrop-blur-xl border-border/50 shadow-lg' 
-              : 'bg-background/80 backdrop-blur-md border-border/20 shadow-md'
-          }`}>
+          <div className="flex items-center justify-between px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl border transition-all duration-500 bg-background/70 backdrop-blur-md border-border/30 shadow-md">
             {/* Mobile Logo */}
             <div 
               className="flex items-center space-x-1 sm:space-x-2 cursor-pointer touch-manipulation"

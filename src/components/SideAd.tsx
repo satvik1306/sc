@@ -33,21 +33,21 @@ export function SideAd() {
   return (
     <motion.div 
       ref={sideAdRef}
-      className="hidden lg:block space-y-12"
+      className="hidden lg:block space-y-2"
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
       {/* Magazine-style header */}
       <motion.div
         variants={magazineVariants}
-        className="text-center mb-8"
+        className="text-center mb-2"
       >
-        <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
+        <h3 className="text-base md:text-lg font-bold tracking-tight mb-0.5">
           FEATURED
           <br />
           <span className="text-primary">SHOWCASE</span>
         </h3>
-        <div className="w-16 h-1 bg-primary mx-auto"></div>
+        <div className="w-8 h-0.5 bg-primary mx-auto"></div>
       </motion.div>
 
       {/* Video showcase 1 */}
@@ -58,23 +58,23 @@ export function SideAd() {
       >
         <div className="relative overflow-hidden">
           <video
-            src={`${import.meta.env.BASE_URL}videos/sari1.mp4`}
+            src={`${import.meta.env.BASE_URL}videos/sari3.mp4`}
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        <div className="p-4 md:p-6">
-          <h4 className="text-lg md:text-xl font-bold mb-2 text-foreground">Dream Home</h4>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            Your vision transformed into architectural reality through cutting-edge design.
+        <div className="p-1.5 md:p-2">
+          <h4 className="text-xs font-bold mb-0.5 text-foreground">Dream Home</h4>
+          <p className="text-xs text-muted-foreground leading-snug">
+            Architectural reality through cutting-edge design.
           </p>
-          <div className="mt-4 flex items-center justify-between">
+          <div className="mt-0.5 flex items-center justify-between">
             <span className="text-xs font-semibold text-primary uppercase tracking-wide">Featured Project</span>
-            <div className="w-8 h-0.5 bg-primary"></div>
+            <div className="w-4 h-0.5 bg-primary"></div>
           </div>
         </div>
       </motion.div>
@@ -87,23 +87,23 @@ export function SideAd() {
       >
         <div className="relative overflow-hidden">
           <video
-            src={`${import.meta.env.BASE_URL}videos/sari2.mp4`}
+            src={`${import.meta.env.BASE_URL}videos/sari4.mp4`}
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        <div className="p-4 md:p-6">
-          <h4 className="text-lg md:text-xl font-bold mb-2 text-foreground">Innovation</h4>
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            Every detail crafted with precision, innovation, and uncompromising quality.
+        <div className="p-1.5 md:p-2">
+          <h4 className="text-xs font-bold mb-0.5 text-foreground">Innovation</h4>
+          <p className="text-xs text-muted-foreground leading-snug">
+            Precision crafted with uncompromising quality.
           </p>
-          <div className="mt-4 flex items-center justify-between">
+          <div className="mt-0.5 flex items-center justify-between">
             <span className="text-xs font-semibold text-primary uppercase tracking-wide">Excellence</span>
-            <div className="w-8 h-0.5 bg-primary"></div>
+            <div className="w-4 h-0.5 bg-primary"></div>
           </div>
         </div>
       </motion.div>
@@ -112,28 +112,28 @@ export function SideAd() {
       <motion.div 
         variants={cardVariants}
         transition={{ delay: 0.6 }}
-        className="bg-primary/5 border-2 border-primary/20 rounded-lg p-6 md:p-8 text-center hover:bg-primary/15 transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
+        className="bg-primary/5 border-2 border-primary/20 rounded-lg p-3 md:p-4 text-center hover:bg-primary/15 transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
       >
-        <h4 className="text-xl md:text-2xl font-bold mb-4 text-foreground">
+        <h4 className="text-base md:text-lg font-bold mb-1.5 text-foreground">
           START YOUR
           <br />
           <span className="text-primary">JOURNEY</span>
         </h4>
-        <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">
+        <p className="text-xs text-muted-foreground mb-2 leading-relaxed">
           Ready to build your dream villa? Let's discuss your vision.
         </p>
-        <div className="space-y-3">
-          <div className="flex items-center justify-center space-x-2">
-            <div className="w-2 h-2 bg-primary rounded-full"></div>
-            <span className="text-xs font-semibold text-primary uppercase tracking-wide">Consultation</span>
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-center space-x-1.5">
+            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+            <span className="text-xs font-medium text-primary uppercase tracking-wide">Consultation</span>
           </div>
-          <div className="flex items-center justify-center space-x-2">
-            <div className="w-2 h-2 bg-primary rounded-full"></div>
-            <span className="text-xs font-semibold text-primary uppercase tracking-wide">Design</span>
+          <div className="flex items-center justify-center space-x-1.5">
+            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+            <span className="text-xs font-medium text-primary uppercase tracking-wide">Design</span>
           </div>
-          <div className="flex items-center justify-center space-x-2">
-            <div className="w-2 h-2 bg-primary rounded-full"></div>
-            <span className="text-xs font-semibold text-primary uppercase tracking-wide">Construction</span>
+          <div className="flex items-center justify-center space-x-1.5">
+            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+            <span className="text-xs font-medium text-primary uppercase tracking-wide">Construction</span>
           </div>
         </div>
       </motion.div>

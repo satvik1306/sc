@@ -51,8 +51,8 @@ export function MovingHeadlines({
   if (headlines.length === 1) {
     return (
       <div className={`${className}`}>
-        <div className={`bg-slate-800/60 backdrop-blur-sm border border-slate-600/40 rounded-2xl p-8 md:p-12 ${showDescriptions ? 'min-h-[200px]' : ''}`}>
-          <div className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl leading-tight mb-4`}
+        <div className={`bg-slate-800/60 backdrop-blur-sm border border-slate-600/40 rounded-2xl p-8 md:p-2 ${showDescriptions ? 'min-h-[200px]' : ''}`}>
+          <div className={`${fontSize} font-bold text-center font-heading drop-shadow-2xl leading-tight`}
                style={{ 
                  textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
                  wordBreak: 'break-word',
